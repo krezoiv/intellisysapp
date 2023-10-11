@@ -1,0 +1,22 @@
+<p>
+  <mat-toolbar class="toolbar"> <!-- Agrega la clase CSS red-background -->
+    <span class="toolbar-title">Retelecom</span>
+    <span class="toolbar-divider">||</span>
+    <a class="link-style" [matMenuTriggerFor]="comprasMenu">
+      Compras
+      <mat-icon>arrow_drop_down</mat-icon> <!-- Icono de flecha hacia abajo -->
+    </a>
+    <a class="link-style" [matMenuTriggerFor]="ventasMenu">
+      Ventas
+      <mat-icon>arrow_drop_down</mat-icon> <!-- Icono de flecha hacia abajo -->
+    </a>
+    <mat-menu #comprasMenu="matMenu">
+      <a mat-menu-item routerLink="/retelecom/Compras/NuevaCompra">Nueva Compra</a>
+      <button mat-menu-item>Editar Compra</button>
+    </mat-menu>
+    <mat-menu #ventasMenu="matMenu">
+      <a mat-menu-item routerLink="/retelecom/Ventas/NuevaVenta">Nueva Venta</a>
+      <a mat-menu-item routerLink="/retelecom/Ventas/EditarVenta">Editar Venta</a>
+    </mat-menu>
+  </mat-toolbar>
+</p>
