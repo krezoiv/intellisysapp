@@ -1,0 +1,18 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .link-style {
+    text-decoration: none; /* Elimina la decoración de enlace subrayado */
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    cursor: pointer; /* Cambia el cursor al estilo de selección de enlace */
+  }
+
+  .toolbar {
+    background-color: red;
+    color: white; /* Cambia el color de texto si es necesario para una mejor legibilidad */
+    height: 40px; /* Ajusta la altura según lo delgado que desees el mat-toolbar */
+    line-height: 40px; /* Ajusta la alineación vertical del contenido */
+    font-size: 14px; /* Ajusta el tamaño del texto si es necesario */
+  }
+  

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-employee',
@@ -7,4 +8,26 @@ import { Component } from '@angular/core';
 })
 export class NewEmployeeComponent {
 
+  public employeeForm : FormGroup = this.fb.group({
+    code :[''],
+    firstName :[''],
+    secondName :[''],
+    firstLastName :[''],
+    secondLastName :[''],
+    hireDate :[''],
+    idCampus :[''],
+    idEmployeeType:[''],
+    idStatus: [''],
+    idWorkPosition :[''],
+    idMunicipality:[''],
+    addressReference:[''],
+    BACaccount :[''],
+    BAMaccount :[''], 
+  })
+
+  constructor(
+    private fb: FormBuilder
+  ){}
+
+  
 }

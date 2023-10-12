@@ -1,1 +1,23 @@
-<p>header-administration works!</p>
+<p>
+    <mat-toolbar class="toolbar"> <!-- Agrega la clase CSS red-background -->
+      <span class="toolbar-title">Administración &nbsp;</span>
+      <span class="toolbar-divider"> ||&nbsp; </span>
+      <a class="link-style" [matMenuTriggerFor]="UsersMenu">
+        Usuarios
+        <mat-icon>arrow_drop_down</mat-icon> <!-- Icono de flecha hacia abajo -->
+      </a>
+      <a class="link-style" [matMenuTriggerFor]="EmployeeMenu">
+        Empleados
+        <mat-icon>arrow_drop_down</mat-icon> <!-- Icono de flecha hacia abajo -->
+      </a>
+      <mat-menu #UsersMenu="matMenu">
+        <a mat-menu-item routerLink="/retelecom/Compras/NuevaCompra">Nueva Compra</a>
+        <button mat-menu-item>Editar Compra</button>
+      </mat-menu>
+      <mat-menu #EmployeeMenu="matMenu">
+        <a mat-menu-item routerLink="/administracion/nuevoEmpleado">Agregar Empleado</a>
+        <a mat-menu-item routerLink="/retelecom/Ventas/EditarVenta">Editar Empleado</a>
+      </mat-menu>
+    </mat-toolbar>
+  </p>
+  

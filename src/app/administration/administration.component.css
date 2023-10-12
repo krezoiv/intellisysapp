@@ -1,0 +1,26 @@
+.wrapper {
+  display: table; /* Utiliza display: table para crear una tabla ficticia */
+  width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+  height: calc(205vh - 105vh);
+}
+
+.wrapper .sidebar {
+  display: table-cell; /* Hace que el sidebar se comporte como una celda de la tabla */
+  width: 200px;
+  padding: 30px 0;
+ 
+}
+
+.wrapper .main_content {
+  display: table-cell; /* Hace que el contenido principal se comporte como una celda de la tabla */
+  box-sizing: border-box;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+/* Media query para ajustar el diseño en pantallas más pequeñas */
+@media (max-width: 400px) {
+  .wrapper .main_content {
+    padding: 10px;
+  }
+}

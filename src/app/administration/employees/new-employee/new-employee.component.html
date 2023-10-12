@@ -1,1 +1,119 @@
-<p>new-employee works!</p>
+<div class="container">
+    <form [formGroup]="employeeForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="code">Código:</label>
+            <input type="text" id="code" formControlName="code" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="firstName">Primer Nombre:</label>
+            <input type="text" id="firstName" formControlName="firstName" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="secondName">Segundo Nombre:</label>
+            <input type="text" id="secondName" formControlName="secondName" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="firstLastName">Primer Apellido:</label>
+            <input type="text" id="firstLastName" formControlName="firstLastName" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="secondLastName">Segundo Apellido:</label>
+            <input type="text" id="secondLastName" formControlName="secondLastName" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="hireDate">Fecha de Contratación:</label>
+            <input type="date" id="hireDate" formControlName="hireDate" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idCampus">Campus:</label>
+            <select id="idCampus" formControlName="idCampus" class="form-control">
+              <option value="campus1">Campus 1</option>
+              <option value="campus2">Campus 2</option>
+              <!-- Agrega más opciones según tus necesidades -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idEmployeeType">Tipo de Empleado:</label>
+            <select id="idEmployeeType" formControlName="idEmployeeType" class="form-control">
+              <option value="type1">Tipo 1</option>
+              <option value="type2">Tipo 2</option>
+              <!-- Agrega más opciones según tus necesidades -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idStatus">Estado:</label>
+            <select id="idStatus" formControlName="idStatus" class="form-control">
+              <option value="active">Activo</option>
+              <option value="inactive">Inactivo</option>
+              <!-- Agrega más opciones según tus necesidades -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idWorkPosition">Posición de Trabajo:</label>
+            <select id="idWorkPosition" formControlName="idWorkPosition" class="form-control">
+              <option value="position1">Posición 1</option>
+              <option value="position2">Posición 2</option>
+              <!-- Agrega más opciones según tus necesidades -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idMunicipality">Municipio:</label>
+            <select id="idMunicipality" formControlName="idMunicipality" class="form-control">
+              <option value="municipality1">Municipio 1</option>
+              <option value="municipality2">Municipio 2</option>
+              <!-- Agrega más opciones según tus necesidades -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="addressReference">Referencia de Dirección:</label>
+            <input type="text" id="addressReference" formControlName="addressReference" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="BACaccount">Cuenta BAC:</label>
+            <input type="text" id="BACaccount" formControlName="BACaccount" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="BAMaccount">Cuenta BAM:</label>
+            <input type="text" id="BAMaccount" formControlName="BAMaccount" class="form-control">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
