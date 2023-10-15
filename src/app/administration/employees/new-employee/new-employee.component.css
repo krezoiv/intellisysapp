@@ -19,7 +19,7 @@
   input[type="text"],
   select,
   input[type="date"] {
-    width: 100%;
+   width: calc(100% - 94px);
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -33,3 +33,12 @@
     height: 30px;
   }
   
+  form {
+    width: 100%;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    min-height: 100vh;
+    background-color: white;
+}
