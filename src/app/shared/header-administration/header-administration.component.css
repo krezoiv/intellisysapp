@@ -11,8 +11,24 @@
   .toolbar {
     background-color: red;
     color: white; /* Cambia el color de texto si es necesario para una mejor legibilidad */
-    height: 40px; /* Ajusta la altura según lo delgado que desees el mat-toolbar */
+    height: 45px; /* Ajusta la altura según lo delgado que desees el mat-toolbar */
     line-height: 40px; /* Ajusta la alineación vertical del contenido */
     font-size: 14px; /* Ajusta el tamaño del texto si es necesario */
+    width: 100%;
+ 
+    
+    
+  }
+  
+  .toolbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .icon-above {
+    font-size: 24px; /* Tamaño del icono, ajusta según tus necesidades */
+    margin-top: -6px; /* Ajusta este valor para centrar el ícono sobre el texto */
   }
   

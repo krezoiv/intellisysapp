@@ -35,7 +35,7 @@ width:60px;
 overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
--webkit-transform:translateZ(0) scale(1,1);
+
 z-index:1000;
 }
 
@@ -58,7 +58,7 @@ color:#999;
  font-family: arial;
 font-size: 14px;
 text-decoration:none;
--webkit-transform:translateZ(0) scale(1,1);
+
 -webkit-transition:all .1s linear;
 transition:all .1s linear;
   
@@ -135,7 +135,14 @@ height: 100%;
 .main-sidebar {
     width: 250px; /* Ancho del sidebar */
     float: left; /* Mantener a la izquierda */
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+   
   }
+ 
   
   /* Estilo para el contenido principal */
   .main-content {
