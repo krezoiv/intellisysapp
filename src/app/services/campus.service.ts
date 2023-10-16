@@ -2,17 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
-import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { campusInterface } from '../data/interfaces/campus.interfaces.';
+import { catchError } from 'rxjs/operators';
+import { CampusModel } from '../data/models/campus.models';
+
 
 const API_URL = environment.API_URL
 
+/**
+ * Interfaz DecodedToken
+ * 
+ * Esta interfaz define la estructura esperada de un objeto que representa un token decodificado.
+ * Contiene la propiedad 'exp' que representa la fecha de vencimiento del token.
+ * Puedes agregar otras propiedades necesarias para representar información adicional del token.
+ */
 interface DecodedToken {
-  exp: number;
-  // Agrega otras propiedades del token si las necesitas
+  exp: number; // Representa la fecha de vencimiento del token en forma de marca de tiempo.
+  // Agrega otras propiedades aquí si es necesario para representar información adicional del token.
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -67,12 +74,13 @@ get headers(){
     headers: headers
   };
 }
+
 /**
  * Obtiene la lista de campus a través de una solicitud HTTP.
  * @returns Un Observable que emite datos de tipo 'campusInterface' o maneja errores.
  */
-getAllCampus(): Observable<campusInterface> {
-  return this._http.get<campusInterface>(`${API_URL}/campus`, this.headers)
+getCampusList(): Observable<CampusModel[]> {
+  return this._http.get<CampusModel[]>(`${API_URL}/campus`, this.headers)
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
@@ -87,5 +95,4 @@ getAllCampus(): Observable<campusInterface> {
       })
     );
 }
-
 }

@@ -46,9 +46,7 @@
           <div class="form-group">
             <label for="idCampus">Sede:</label>
             <select id="idCampus" formControlName="idCampus" class="form-control">
-              <option value="campus1">Campus 1</option>
-              <option value="campus2">Campus 2</option>
-              <!-- Agrega más opciones según tus necesidades -->
+              <option *ngFor="let campusItem of campus" [value]="campusItem.idCampus">{{ campusItem.campusName }}</option>
             </select>
           </div>
         </div>
@@ -78,8 +76,8 @@
           <div class="form-group">
             <label for="idWorkPosition">Posición de Trabajo:</label>
             <select id="idWorkPosition" formControlName="idWorkPosition" class="form-control">
-              <option value="position1">Posición 1</option>
-              <option value="position2">Posición 2</option>
+              <option *ngFor="let workPositionItem of workPosition" [value]="workPositionItem.idWorkPosition">{{ workPositionItem.workPosition }}</option>
+             
               <!-- Agrega más opciones según tus necesidades -->
             </select>
           </div>
