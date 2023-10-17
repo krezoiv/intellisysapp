@@ -5,6 +5,8 @@ import jwt_decode from 'jwt-decode';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CampusModel } from '../data/models/campus.models';
+import { DepartmetsModel } from '../data/models/department.model';
+import { MunicipalityModel } from '../data/models/municipality.models';
 
 
 const API_URL = environment.API_URL
@@ -24,7 +26,7 @@ interface DecodedToken {
 @Injectable({
   providedIn: 'root'
 })
-export class CampusService {
+export class LocationService {
 
   constructor(
     private _http : HttpClient
@@ -95,4 +97,48 @@ getCampusList(): Observable<CampusModel[]> {
       })
     );
 }
+
+/**
+ * Obtiene la lista de departamentos a través de una solicitud HTTP.
+ * @returns Un Observable que emite datos de tipo 'DepartmetsModel' o maneja errores.
+ */
+getDepartmentsList(): Observable<DepartmetsModel[]> {
+  return this._http.get<DepartmetsModel[]>(`${API_URL}/departments`, this.headers)
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
+          console.error('Error de autorización:', error.message);
+          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
+        } else {
+          // Maneja otros errores de manera genérica.
+          console.error('Error en la solicitud de departamentos:', error);
+          return throwError('No se pudo obtener la lista de departamentos. Por favor, inténtelo de nuevo.');
+        }
+      })
+    );
+}
+
+/**
+ * Obtiene la lista de municipios por departamento a través de una solicitud HTTP.
+ * @param idDepartment - El ID del departamento del cual se desea obtener los municipios.
+ * @returns Un Observable que emite datos de tipo 'MunicipalityModel' o maneja errores.
+ */
+getMunicipalitiesByDepartment(idDepartment: number): Observable<MunicipalityModel[]> {
+  return this._http.get<MunicipalityModel[]>(`${API_URL}/municipalities/${idDepartment}`, this.headers)
+    .pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
+          console.error('Error de autorización:', error.message);
+          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
+        } else {
+          // Maneja otros errores de manera genérica.
+          console.error('Error en la solicitud de municipios:', error);
+          return throwError('No se pudo obtener la lista de municipios. Por favor, inténtelo de nuevo.');
+        }
+      })
+    );
+}
+
 }

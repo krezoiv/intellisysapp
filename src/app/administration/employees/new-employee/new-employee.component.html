@@ -2,7 +2,7 @@
 <div class="container">
     <form [formGroup]="employeeForm">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="code">Código:</label>
             <input type="text" id="code" formControlName="code" class="form-control">
@@ -84,11 +84,18 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="idMunicipality">Municipio:</label>
+            <label for="idDepartment">Departament:</label>
+            <select id="idDepartment" formControlName="idDepartment" class="form-control" (change)="onDepartmentSelected($event)">
+              <option *ngFor="let department of departments" [value]="department.idDepartment">{{ department.department }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idMunicipality">Municipality:</label>
             <select id="idMunicipality" formControlName="idMunicipality" class="form-control">
-              <option value="municipality1">Municipio 1</option>
-              <option value="municipality2">Municipio 2</option>
-              <!-- Agrega más opciones según tus necesidades -->
+              <option *ngFor="let municipality of municipality" [value]="municipality.idMunicipality">{{ municipality.municipality }}</option>
+             
             </select>
           </div>
         </div>
