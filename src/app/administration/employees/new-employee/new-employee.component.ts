@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CampusModel } from 'src/app/data/models/campus.models';
 import { DepartmetsModel } from 'src/app/data/models/department.model';
+import { EmployeeTypeModel } from 'src/app/data/models/employee-type';
 import { MunicipalityModel } from 'src/app/data/models/municipality.models';
 import { WorkPositionModel } from 'src/app/data/models/work-position.models';
+import { EmployeesService } from 'src/app/services/employees.service';
 import { LocationService } from 'src/app/services/location.service';
 import { WorkPositionService } from 'src/app/services/work-position.service';
 
@@ -32,6 +34,14 @@ public campus: CampusModel[] = [];
 public workPosition: WorkPositionModel[] = [];
 
 
+/**
+ * Propiedad employeesType
+ * 
+ * Representa una lista de modelos de tipo de empleado. Esta lista se utiliza para almacenar información sobre tipo de empleado.
+ * @type {EmployeeTypeModel[]}
+ */
+public employeeType: EmployeeTypeModel[] = [];
+
 
 /**
  * Propiedad departments
@@ -58,8 +68,8 @@ public employeeForm: FormGroup = new FormGroup({
   hireDate: new FormControl(''),
   idCampus: new FormControl(''),
   idEmployeeType: new FormControl(''),
-  idStatus: new FormControl(''),
   idWorkPosition: new FormControl(''),
+  idStatus: new FormControl(''),
   idDepartment: new FormControl(''),
   idMunicipality: new FormControl(''),
   addressReference: new FormControl(''),
@@ -69,15 +79,15 @@ public employeeForm: FormGroup = new FormGroup({
   constructor(
     private fb: FormBuilder, 
     private _locationService: LocationService,
+    private _employeeService : EmployeesService,
     private _workPositionService : WorkPositionService
     ) {}
 
   ngOnInit(): void {
     this.loadCampus();
-    this.loadWorkPosition();
     this.loadDepartments();
-    
-    
+    this.loadEmployeeType();
+     
   }
 
 
@@ -95,6 +105,7 @@ loadCampus() {
   );
 }
 
+/*
 // Carga la lista de posiciones de trabajo desde el servidor y almacena la lista en 'workPosition'.
 loadWorkPosition() {
   this._workPositionService.getWorkList().subscribe(
@@ -108,6 +119,38 @@ loadWorkPosition() {
     }
   );
 }
+*/
+
+loadEmployeeType(){
+  this._employeeService.getEmployeesTypeList().subscribe(
+    (employeeTypeList) => {
+      this.employeeType = employeeTypeList;
+      },
+      (error)=>{
+        console.log('Error al obtener la lista de departamentos:', error);
+      }
+  )
+}
+
+loadWorkPositionByEmployeeType(idEmployeeType : number) {
+  this._employeeService.getWorkpositionByEmployees(idEmployeeType).subscribe(
+    (workPositions) =>{
+      this.workPosition = workPositions;
+      console.log(workPositions)
+      console.log('ee', this.workPosition)
+    },
+    (error) => {
+      console.error('Error al obtener la lista de cargos:', error);
+    }
+  );
+}
+
+onEmployeesTypeSelected(event: any){
+  const selectedEmployeeTypeId = event.target.value;
+  if (selectedEmployeeTypeId !== undefined  && selectedEmployeeTypeId !== null){
+    this.loadWorkPositionByEmployeeType(selectedEmployeeTypeId);
+  }
+}
 
 // Carga la lista de departamentos desde el servicio.
 loadDepartments() {
@@ -115,7 +158,7 @@ loadDepartments() {
     (departmentsList) => {
       // Maneja la respuesta exitosa y almacena la lista de departamentos.
       this.departments = departmentsList;
-      console.log('Departments:', this.departments);
+     
     },
     (error) => {
       // Maneja errores en la solicitud y muestra mensajes de error en la consola.
@@ -130,7 +173,6 @@ loadMunicipalitiesByDepartment(departmentID: number) {
     (municipalities) => {
       // Maneja la respuesta exitosa y almacena la lista de municipios.
       this.municipality = municipalities;
-      console.log('Municipalities:', this.municipality);
     },
     (error) => {
       // Maneja errores en la solicitud y muestra mensajes de error en la consola.
