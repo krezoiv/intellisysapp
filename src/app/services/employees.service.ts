@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -10,6 +6,7 @@ import { AuthService } from './auth.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { WorkPositionModel } from '../data/models/work-position.models';
 import { EmployeeTypeModel } from '../data/models/employee-type';
+import { EmployeesModel } from '../data/models/employees.model';
 
 const API_URL = environment.API_URL;
 
@@ -141,5 +138,14 @@ export class EmployeesService {
         }
       })
     );
+  }
+
+  /**
+   * Método para crear un nuevo empleado en el servidor.
+   * @param employeeData - Datos del nuevo empleado a crear.
+   * @returns {Observable<EmployeeModel>} - Un observable que emite el nuevo empleado creado.
+   */
+  createEmployee(employeeData: EmployeesModel): Observable<EmployeesModel> {
+    return this._http.post<EmployeesModel>(`${API_URL}/employees`, employeeData, this.headers)
   }
 }

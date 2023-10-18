@@ -1,6 +1,9 @@
 
 <div class="container">
     <form [formGroup]="employeeForm">
+      
+      <hr>
+      <h1>Datos Personales</h1>
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
@@ -41,46 +44,10 @@
           </div>
         </div>
       </div>
+      
+      <hr>
+      <h1>Dirección de Residencia</h1>
       <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="idCampus">Sede:</label>
-            <select id="idCampus" formControlName="idCampus" class="form-control">
-              <option *ngFor="let campusItem of campus" [value]="campusItem.idCampus">{{ campusItem.campusName }}</option>
-            </select>
-          </div>
-        </div>
-        
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="idEmployeeType">Tipo Empleado:</label>
-              <select id="idEmployeeType" formControlName="idEmployeeType" class="form-control" (change)="onEmployeesTypeSelected($event)">
-                <option *ngFor="let employeeTypeItem of employeeType" [value]="employeeTypeItem.idEmployeeType">{{ employeeTypeItem.employeeType }}</option>
-              </select>
-            </div>
-          
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="idStatus">Estado:</label>
-            <select id="idStatus" formControlName="idStatus" class="form-control">
-              <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
-              <!-- Agrega más opciones según tus necesidades -->
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="idWorkPosition">Posición de Trabajo:</label>
-            <select id="idWorkPosition" formControlName="idWorkPosition" class="form-control">
-              <option *ngFor="let workPositionItem of workPosition" [value]="workPositionItem.idWorkPosition">{{ workPositionItem.workPosition }}</option>
-              
-            </select>
-          </div>
-        </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="idDepartment">Departament:</label>
@@ -98,13 +65,17 @@
             </select>
           </div>
         </div>
-        <div class="col-md-4">
+      </div>
+      <div class="row">
+        <div class="col md-12">
           <div class="form-group">
             <label for="addressReference">Referencia de Dirección:</label>
             <input type="text" id="addressReference" formControlName="addressReference" class="form-control">
           </div>
         </div>
       </div>
+      <hr>
+      <h1>Cuentas Bancarias</h1>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -120,7 +91,41 @@
         </div>
         
       </div>
+      <hr>
+      <h1>Tipo de Empleado</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idCampus">Sede:</label>
+            <select id="idCampus" formControlName="idCampus" class="form-control">
+              <option *ngFor="let campusItem of campus" [value]="campusItem.idCampus">{{ campusItem.campusName }}</option>
+            </select>
+          </div>
+        </div>
+        
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="idEmployeeType">Tipo Empleado:</label>
+              <select id="idEmployeeType" formControlName="idEmployeeType" class="form-control" (change)="onEmployeesTypeSelected($event)">
+                <option *ngFor="let employeeTypeItem of employeeType" [value]="employeeTypeItem.idEmployeeType">{{ employeeTypeItem.employeeType }}</option>
+              </select>
+              
+            </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="idWorkPosition">Posición de Trabajo:</label>
+            <select id="idWorkPosition" formControlName="idWorkPosition" class="form-control">
+              <option *ngFor="let workPositionItem of workPosition" [value]="workPositionItem.idWorkposition">{{ workPositionItem.workPosition }}</option>
+              
+            </select>
+          </div>
+        </div>
+      </div>
       
+     
+      <button (click)="createEmployee()">Crear Empleado</button>
     </form>
   </div>
   

@@ -1,8 +1,10 @@
+import { EmployeeTypeModel } from "./employee-type";
+
 export class WorkPositionModel{
     constructor(
-      public idWorkPosition : number,
+      public idWorkposition : number,
       public workPosition: string,
-      public idEmployeeType: string
+      public idEmployeeType: EmployeeTypeModel
     ){
   
     }
