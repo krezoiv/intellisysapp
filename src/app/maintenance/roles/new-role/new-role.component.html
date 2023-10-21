@@ -1,0 +1,18 @@
+<div class="container">
+    <form autocomplete="off" [formGroup]="roleForm" (ngSubmit)="createRole()">
+  
+      <hr>
+      <h1>Nuevo Role</h1>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="code">Role:</label>
+            <input type="text" id="roleName" formControlName="roleName" class="form-control">
+          </div>
+        </div>
+        </div>
+       
+  
+      <button class="btn mt-3" >Guardar</button>
+    </form>
+  </div>

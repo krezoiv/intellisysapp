@@ -9,6 +9,7 @@ import { DeleteEmployeeComponent } from './employees/delete-employee/delete-empl
 import { DashboardAdministrationComponent } from './dashboard-administration/dashboard-administration.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AdministrationRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(), // Agrega ToastrModule a la lista de imports
   ]
 })
 export class AdministrationModule { }

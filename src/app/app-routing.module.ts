@@ -7,6 +7,7 @@ import { RedesisRoutingModule } from './redesis/redesis-routing.module';
 import { RetelecomRoutingModule } from './retelecom/retelecom-routing.module';
 import { AdministrationRoutingModule } from './administration/administration-routing.module';
 import { AuthGuard } from './guards/auth.guard';
+import { MaintenanceModule } from './maintenance/maintenance.module';
 
 
 
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: 'administracion',
     loadChildren: () =>
       import('./administration/administration.module').then((administration)=> administration.AdministrationModule)
+  },
+  {
+    path: 'roles',
+    loadChildren: () =>
+      import('./maintenance/maintenance.module').then((maintenance) => maintenance.MaintenanceModule)
   }
 
   // Otras rutas y configuraciones de enrutamiento según sea necesario
@@ -52,10 +58,12 @@ const routes: Routes = [
     HomeRoutingModule,               // Importar el módulo de rutas de inicio
     RedesisRoutingModule,            // Importar el módulo de rutas de Redes
     RetelecomRoutingModule,           // Importar el módulo de rutas de Retelecom
-    AdministrationRoutingModule  // Importar el módulo de rutas de empleado, usuarios     // Configurar las rutas principales
-    
+    AdministrationRoutingModule,  // Importar el módulo de rutas de empleado, usuarios     // Configurar las rutas principales
+    MaintenanceModule             // Importar el módulo de rutas de mantenimiento de roles
   ],
   exports: [RouterModule]           // Exportar el módulo de enrutamiento para su uso en la aplicación
 })
+
+
 export class AppRoutingModule { }
 

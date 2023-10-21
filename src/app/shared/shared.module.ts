@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
+import { HeaderMaintenanceComponent } from './header-maintenance/header-maintenance.component';
 
 
 
@@ -21,7 +22,8 @@ import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
     MainHeaderComponent,
     FooterComponent,
     HeaderRetelecomComponent,
-    HeaderAdministrationComponent
+    HeaderAdministrationComponent,
+    HeaderMaintenanceComponent
   ],
   exports:[
     MainSidebarComponent,
@@ -29,6 +31,7 @@ import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
     FooterComponent, 
     HeaderRetelecomComponent,
     HeaderAdministrationComponent,
+    HeaderMaintenanceComponent
   ],
   imports: [
     CommonModule,

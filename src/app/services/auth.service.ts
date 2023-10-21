@@ -1,9 +1,6 @@
 import { Injectable, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  LoginFormInterface,
-  LoginResponse,
-} from '../data/interfaces/login-form.interfaces';
+import {LoginFormInterface,LoginResponse } from '../data/interfaces/login-form.interfaces';
 
 import { Observable, of, throwError } from 'rxjs'; // Importa throwError
 import { catchError, map } from 'rxjs/operators'; // Importa catchError

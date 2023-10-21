@@ -1,0 +1,44 @@
+.new-employee-form {
+    width: 80%; /* Ancho deseado para el formulario */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left; /* Alineación a la izquierda */
+    
+    
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  select,
+  input[type="date"] {
+   width: calc(100% - 94px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  select {
+    height: 30px;
+  }
+  
+  input[type="date"] {
+    height: 30px;
+  }
+  
+  form {
+    width: 100%;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    min-height: 100vh;
+    background-color: white;
+}

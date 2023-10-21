@@ -1,6 +1,6 @@
 export class DepartmetsModel {
     constructor(
-      public idDepartment : string,
+      public idDepartment : number,
       public department: string,
           ){}
   }     

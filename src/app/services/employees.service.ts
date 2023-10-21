@@ -147,5 +147,16 @@ export class EmployeesService {
    */
   createEmployee(employeeData: EmployeesModel): Observable<EmployeesModel> {
     return this._http.post<EmployeesModel>(`${API_URL}/employees`, employeeData, this.headers)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            console.error('Error de autorización:', error.message);
+            return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
+          } else {
+            console.error('Error al crear un nuevo empleado:', error);
+            return throwError('No se pudo crear el nuevo empleado. Por favor, inténtelo de nuevo.');
+          }
+        })
+      );
   }
 }
