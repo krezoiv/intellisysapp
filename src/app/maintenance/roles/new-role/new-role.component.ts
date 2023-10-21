@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { RoleModel } from 'src/app/data/models/role.model';
 import { RolesService } from 'src/app/services/roles.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-role',
@@ -16,18 +16,27 @@ export class NewRoleComponent {
     roleName: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private _roleService: RolesService) {}
+  constructor(
+    private fb: FormBuilder,
+    private _roleService: RolesService,
+    private toastr: ToastrService
+  ) {}
 
   createRole() {
     this._roleService.createRole(this.roleForm.value).subscribe(
-      (data) => {
-        console.log(this.roleForm.value);
-        Swal.fire('Exitoso', 'creado correctamente');
-        console.log('Guardado');
+      (data: any) => {
+        // Captura el mensaje de éxito de la respuesta del servidor
+        const successMessage = data.message;
+
+        // Muestra el mensaje de éxito utilizando Toastr
+        this.toastr.success(successMessage, 'Éxito');
+
+        // Puedes realizar cualquier otra acción después de un éxito aquí
       },
       (err) => {
-        Swal.fire('Error', err.error.msg, 'error');
-        console.log(' No Guardado');
+        // Utiliza el mensaje de error proporcionado por el servidor
+        this.toastr.error(err.error.error || 'Error desconocido', 'Error');
+        console.log('No Guardado');
       }
     );
   }
