@@ -23,28 +23,28 @@ export class NewRoleComponent {
   ) {}
 
   createRole() {
-    this._roleService.createRole(this.roleForm.value).subscribe(
-      (data: any) => {
-        if (data.message) {
-          // Comprobar si la respuesta contiene un mensaje de éxito
-          const successMessage = data.message;
-          
-          // Muestra el mensaje de éxito utilizando Toastr
-          this.toastr.success(successMessage, 'Éxito');
-          
-          // Puedes realizar cualquier otra acción después de un éxito aquí
-        } else {
-          // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
-          this.toastr.error('Error desconocido', 'Error');
-          console.log('No Guardado');
-        }
-      },
-      (err) => {
-        // Utiliza el mensaje de error proporcionado por el servidor
-        this.toastr.error(err.error.error || 'Error desconocido', 'Error');
+  this._roleService.createRole(this.roleForm.value).subscribe(
+    (data: any) => {
+      if (data.message) {
+        // Comprobar si la respuesta contiene un mensaje de éxito
+        const successMessage = data.message;
+        
+        // Muestra el mensaje de éxito utilizando Toastr
+        this.toastr.success(successMessage, 'Éxito');
+        
+        // Puedes realizar cualquier otra acción después de un éxito aquí
+      } else {
+        // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+        this.toastr.error('Error desconocido', 'Error');
         console.log('No Guardado');
       }
-    );
-  }
-  
+    },
+    (err) => {
+      // Utiliza el mensaje de error proporcionado por el servidor
+      this.toastr.error(err.error.error || 'Error desconocido', 'Error');
+      console.log('No Guardado');
+    }
+  );
+}
+
 }

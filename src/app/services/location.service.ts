@@ -83,19 +83,6 @@ get headers(){
  */
 getCampusList(): Observable<CampusModel[]> {
   return this._http.get<CampusModel[]>(`${API_URL}/campus`, this.headers)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
-          console.error('Error de autorización:', error.message);
-          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-        } else {
-          // Maneja otros errores de manera genérica.
-          console.error('Error en la solicitud de campus:', error);
-          return throwError('No se pudo obtener la lista de campus. Por favor, inténtelo de nuevo.');
-        }
-      })
-    );
 }
 
 /**
@@ -104,19 +91,7 @@ getCampusList(): Observable<CampusModel[]> {
  */
 getDepartmentsList(): Observable<DepartmetsModel[]> {
   return this._http.get<DepartmetsModel[]>(`${API_URL}/departments`, this.headers)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
-          console.error('Error de autorización:', error.message);
-          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-        } else {
-          // Maneja otros errores de manera genérica.
-          console.error('Error en la solicitud de departamentos:', error);
-          return throwError('No se pudo obtener la lista de departamentos. Por favor, inténtelo de nuevo.');
-        }
-      })
-    );
+    
 }
 
 /**
@@ -126,19 +101,7 @@ getDepartmentsList(): Observable<DepartmetsModel[]> {
  */
 getMunicipalitiesByDepartment(idDepartment: number): Observable<MunicipalityModel[]> {
   return this._http.get<MunicipalityModel[]>(`${API_URL}/municipalities/${idDepartment}`, this.headers)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
-          console.error('Error de autorización:', error.message);
-          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-        } else {
-          // Maneja otros errores de manera genérica.
-          console.error('Error en la solicitud de municipios:', error);
-          return throwError('No se pudo obtener la lista de municipios. Por favor, inténtelo de nuevo.');
-        }
-      })
-    );
+
 }
 
 }

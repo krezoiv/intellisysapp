@@ -1,8 +1,8 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
+
 import { Observable, catchError, throwError } from 'rxjs';
 import { WorkPositionModel } from '../data/models/work-position.models';
 import { EmployeeTypeModel } from '../data/models/employee-type';
@@ -26,7 +26,7 @@ interface DecodedToken {
   providedIn: 'root',
 })
 export class EmployeesService {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   // Función para decodificar un token JWT
   decodeToken(token: string) {
@@ -78,65 +78,25 @@ export class EmployeesService {
    * @returns {Observable<WorkPositionModel[]>} - Un observable que emite una lista de posiciones de trabajo.
    */
   getWorkList(): Observable<WorkPositionModel[]> {
-    return this._http
-      .get<WorkPositionModel[]>(`${API_URL}/workPosition`, this.headers)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            console.error('Error de autorización:', error.message);
-            return throwError(
-              'Error de autorización: Redirigiendo a la página de inicio de sesión.'
-            );
-          } else {
-            // Maneja otros errores de manera genérica.
-            console.error(
-              'Error en la solicitud de posición de trabajo:',
-              error
-            );
-            return throwError(
-              'No se pudo obtener la lista de posición de trabajo. Por favor, inténtelo de nuevo.'
-            );
-          }
-        })
-      );
+    return this._http.get<WorkPositionModel[]>(
+      `${API_URL}/workPosition`,
+      this.headers
+    );
   }
 
   getEmployeesTypeList(): Observable<EmployeeTypeModel[]> {
-    return this._http
-      .get<EmployeeTypeModel[]>(`${API_URL}/employeeType`, this.headers)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
-            console.error('Error de autorización:', error.message);
-            return throwError(
-              'Error de autorización: Redirigiendo a la página de inicio de sesión.'
-            );
-          } else {
-            // Maneja otros errores de manera genérica.
-            console.error('Error en la solicitud de departamentos:', error);
-            return throwError(
-              'No se pudo obtener la lista de tipo de empleados. Por favor, inténtelo de nuevo.'
-            );
-          }
-        })
-      );
+    return this._http.get<EmployeeTypeModel[]>(
+      `${API_URL}/employeeType`,
+      this.headers
+    );
   }
 
-  getWorkpositionByEmployees(idEmployeeType : number): Observable<WorkPositionModel[]>{
-    return this._http.get<WorkPositionModel[]>(`${API_URL}/workPositions/${idEmployeeType}`, this.headers)
-    .pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Maneja errores de autorización, por ejemplo, redirigiendo a la página de inicio de sesión.
-          console.error('Error de autorización:', error.message);
-          return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-        } else {
-          // Maneja otros errores de manera genérica.
-          console.error('Error en la solicitud de cargos:', error);
-          return throwError('No se pudo obtener la lista de cargos. Por favor, inténtelo de nuevo.');
-        }
-      })
+  getWorkpositionByEmployees(
+    idEmployeeType: number
+  ): Observable<WorkPositionModel[]> {
+    return this._http.get<WorkPositionModel[]>(
+      `${API_URL}/workPositions/${idEmployeeType}`,
+      this.headers
     );
   }
 
@@ -146,17 +106,28 @@ export class EmployeesService {
    * @returns {Observable<EmployeeModel>} - Un observable que emite el nuevo empleado creado.
    */
   createEmployee(employeeData: EmployeesModel): Observable<EmployeesModel> {
-    return this._http.post<EmployeesModel>(`${API_URL}/employees`, employeeData, this.headers)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            console.error('Error de autorización:', error.message);
-            return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-          } else {
-            console.error('Error al crear un nuevo empleado:', error);
-            return throwError('No se pudo crear el nuevo empleado. Por favor, inténtelo de nuevo.');
-          }
-        })
-      );
+    return this._http.post<EmployeesModel>(
+      `${API_URL}/employees`,
+      employeeData,
+      this.headers
+    );
+  }
+
+  /**
+   * Método para buscar empleados en el servidor que coincidan con un término de búsqueda.
+   * @param searchTerm - Término de búsqueda para buscar empleados.
+   * @returns {Observable<EmployeesModel[]>} - Un observable que emite la lista de empleados que coinciden con el término de búsqueda.
+   */
+  searchEmployee(searchTerm: string): Observable<EmployeesModel[]> {
+    const requestBody = { searchTerm };
+    return this._http.post<EmployeesModel[]>(
+      `${API_URL}/searchEmployee`,
+      requestBody,
+      this.headers
+    );
+  }
+
+  getEmployeeDetails(): Observable<EmployeesModel[]>{
+    return this._http.get<EmployeesModel[]>(`${API_URL}/employees`, this.headers);
   }
 }

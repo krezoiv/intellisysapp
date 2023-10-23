@@ -8,7 +8,7 @@ export interface  EmployeeFormInterface {
     secondLastName: string,
     hireDate: string,
     idCampus: string,
-    idEmployeeType: string,
+    idEmployeeType: number ,
     idStatus: number,
     idWorkPosition: number,
     idDepartment: number,
