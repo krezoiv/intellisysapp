@@ -59,17 +59,6 @@ export class DialogAddUserComponent {
     });
   }
 
-  /* createNewUser(){
-    if(this.userForm.valid){
-      this._userService.creatUser(this.userForm.value).subscribe(
-        (responser: UserModel[]) => {{
-          this.toastr.success('Empleado creado con éxito', 'Éxito');
-          this.userForm.reset();
-          this.dialogRef.close();
-        }}
-      )
-    }
-  }*/
 
   createNewUser() {
     this._userService.creatUser(this.userForm.value).subscribe(

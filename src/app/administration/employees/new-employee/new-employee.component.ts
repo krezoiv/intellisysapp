@@ -179,7 +179,7 @@ export class NewEmployeeComponent {
     }
   }
 
-  createEmployee() {
+ /*createEmployee() {
     this.formSubmitted = true;
 
     if (this.employeeForm.invalid) {
@@ -200,5 +200,28 @@ export class NewEmployeeComponent {
         );
       }
     );
+  }*/
+
+  createEmployee(){
+    this._employeeService.createEmployee(this.employeeForm.value).subscribe(
+      (data : any) =>{
+        if (data.message) {
+          // Comprobar si la respuesta contiene un mensaje de éxito
+          const successMessage = data.message;
+          
+          // Muestra el mensaje de éxito utilizando Toastr
+          this.toastr.success(successMessage, 'Éxito');
+          this.employeeForm.reset();
+          
+          // Puedes realizar cualquier otra acción después de un éxito aquí
+        } else {
+          // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+          this.toastr.error('Error inesperado, intente de nuevo', 'Error');
+        }
+      },
+      (err) => {
+        this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
+      }
+    )
   }
 }

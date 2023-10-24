@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { AdministrationComponent } from './administration.component';
-import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
+
 import { NewEmployeeComponent } from './employees/new-employee/new-employee.component';
-import { DeleteEmployeeComponent } from './employees/delete-employee/delete-employee.component';
+
 import { DashboardAdministrationComponent } from './dashboard-administration/dashboard-administration.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,18 +23,22 @@ import { MatSortModule } from '@angular/material/sort';
 import { DialogAddUserComponent } from './users/new-user/dialog-add-user/dialog-add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { ListEmployeesComponent } from './employees/list-employees/list-employees.component';
+import { DialogEditEmployeeComponent } from './employees/dialog-edit-employee/dialog-edit-employee.component';
+import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employee/dialog-delete-employee.component';
 
 
 @NgModule({
   declarations: [
     AdministrationComponent,
-    EditEmployeeComponent,
     NewEmployeeComponent,
-    DeleteEmployeeComponent,
     DashboardAdministrationComponent,
     NewUserComponent,
     EditUserComponent,
-    DialogAddUserComponent
+    DialogAddUserComponent,
+    ListEmployeesComponent,
+    DialogEditEmployeeComponent,
+    DialogDeleteEmployeeComponent
   ],
   imports: [
     CommonModule,

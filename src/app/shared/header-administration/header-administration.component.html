@@ -1,6 +1,7 @@
 <p>
   <mat-toolbar class="toolbar"> <!-- Agrega la clase CSS red-background -->
     <span class="toolbar-title" >Administración &nbsp;</span>
+    <span *ngIf="userName">Bienvenido, {{ userName }}  &nbsp; &nbsp; </span>
     <span class="toolbar-divider"> ||&nbsp; </span>
     <a class="link-style" [matMenuTriggerFor]="UsersMenu">
       Usuarios
@@ -13,12 +14,13 @@
     </a>
   </span>
     <mat-menu #UsersMenu="matMenu">
-      <a mat-menu-item routerLink="/administracion/nuevoUsuario">Agregar Usuario</a>
+      <a mat-menu-item routerLink="/administracion/nuevo-usuario">Agregar Usuario</a>
       <button mat-menu-item>Editar Compra</button>
     </mat-menu>
     <mat-menu #EmployeeMenu="matMenu">
-      <a mat-menu-item routerLink="/administracion/nuevoEmpleado">Agregar Empleado</a>
-      <a mat-menu-item routerLink="/retelecom/Ventas/EditarVenta">Editar Empleado</a>
+      <a mat-menu-item routerLink="/administracion/nuevo-empleado">Agregar Empleado</a>
+      <a mat-menu-item routerLink="/administracion/listado-de-empleados">Editar Empleado</a>
+     
     </mat-menu>
   </mat-toolbar>
 </p>

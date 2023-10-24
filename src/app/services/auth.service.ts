@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 
 interface DecodedToken {
   exp: number;
+  userName: string;
   // Agrega otras propiedades del token si las necesitas
 }
 
@@ -54,9 +55,12 @@ export class AuthService {
     const expirationDate = new Date();
     expirationDate.setMinutes(expirationDate.getMinutes() + 5);
 
+
+    const userName = decodedToken.userName;
     return {
       token,
       expirationDate,
+      userName
     };
   }
 

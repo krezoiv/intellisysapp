@@ -4,6 +4,8 @@ import { AdministrationComponent } from './administration.component';
 import { DashboardAdministrationComponent } from './dashboard-administration/dashboard-administration.component';
 import { NewEmployeeComponent } from './employees/new-employee/new-employee.component';
 import { NewUserComponent } from './users/new-user/new-user.component';
+import { ListEmployeesComponent } from './employees/list-employees/list-employees.component';
+
 
 const routes: Routes = [
   {
@@ -11,8 +13,9 @@ const routes: Routes = [
     component: AdministrationComponent,
     children: [
       { path: 'dashboard', component: DashboardAdministrationComponent },
-      { path: 'nuevoEmpleado', component: NewEmployeeComponent },
-      { path: 'nuevoUsuario', component: NewUserComponent},
+      { path: 'nuevo-empleado', component: NewEmployeeComponent },
+      { path: 'listado-de-empleados', component: ListEmployeesComponent},
+      { path: 'nuevo-usuario', component: NewUserComponent},
     ],
   },
 ];

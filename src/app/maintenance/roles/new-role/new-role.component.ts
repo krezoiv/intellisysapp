@@ -38,13 +38,13 @@ export class NewRoleComponent {
         // Puedes realizar cualquier otra acción después de un éxito aquí
       } else {
         // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
-        this.toastr.error('Error desconocido', 'Error');
+        this.toastr.error('Error inesperado, intente de nuevo', 'Error');
         console.log('No Guardado');
       }
     },
     (err) => {
       // Utiliza el mensaje de error proporcionado por el servidor
-      this.toastr.error(err.error.error || 'Error desconocido', 'Error');
+      this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
       console.log('No Guardado');
     }
   );
