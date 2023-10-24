@@ -22,6 +22,8 @@ export class NewRoleComponent {
     private toastr: ToastrService
   ) {}
 
+
+  
   createRole() {
   this._roleService.createRole(this.roleForm.value).subscribe(
     (data: any) => {
@@ -31,6 +33,7 @@ export class NewRoleComponent {
         
         // Muestra el mensaje de éxito utilizando Toastr
         this.toastr.success(successMessage, 'Éxito');
+        this.roleForm.reset();
         
         // Puedes realizar cualquier otra acción después de un éxito aquí
       } else {
@@ -46,5 +49,7 @@ export class NewRoleComponent {
     }
   );
 }
+
+
 
 }

@@ -16,7 +16,7 @@ import { EmployeesModel } from 'src/app/data/models/employees.model';
 export class DialogAddUserComponent {
   userForm!: FormGroup;
   public users: UserModel[] = [];
-  public roles : RoleModel[]=[];
+  public roles: RoleModel[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -24,13 +24,13 @@ export class DialogAddUserComponent {
     @Inject(MAT_DIALOG_DATA) public addNewUser: any,
     private dialogRef: MatDialogRef<DialogAddUserComponent>,
     private _userService: UsersService,
-    private _roleService : RolesService
+    private _roleService: RolesService
   ) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
       campusName: ['', Validators.required],
-      code: ['', Validators.required],
+      userCode: ['', Validators.required],
       firstName: ['', Validators.required],
       firstLastName: ['', Validators.required],
       userName: ['', Validators.required],
@@ -43,23 +43,23 @@ export class DialogAddUserComponent {
     console.log(this.addNewUser);
     if (this.addNewUser) {
       this.userForm.controls['campusName'].setValue(this.addNewUser.campusName);
-      this.userForm.controls['code'].setValue(this.addNewUser.code);
+      this.userForm.controls['userCode'].setValue(this.addNewUser.code);
       this.userForm.controls['firstName'].setValue(this.addNewUser.firstName);
-      this.userForm.controls['firstLastName'].setValue(this.addNewUser.firstLastName);
+      this.userForm.controls['firstLastName'].setValue(
+        this.addNewUser.firstLastName
+      );
       this.userForm.controls['idEmployee'].setValue(this.addNewUser.idEmployee);
     }
-   this.loadRoles();
+    this.loadRoles();
   }
 
-  loadRoles(){
-    this._roleService.getRolesList().subscribe(
-      (roles)=> {
-        this.roles=roles;
-      }
-    )
+  loadRoles() {
+    this._roleService.getRolesList().subscribe((roles) => {
+      this.roles = roles;
+    });
   }
 
-  createNewUser(){
+  /* createNewUser(){
     if(this.userForm.valid){
       this._userService.creatUser(this.userForm.value).subscribe(
         (responser: UserModel[]) => {{
@@ -69,7 +69,31 @@ export class DialogAddUserComponent {
         }}
       )
     }
+  }*/
+
+  createNewUser() {
+    this._userService.creatUser(this.userForm.value).subscribe(
+      (data: any) => {
+        if (data.message) {
+          // Comprobar si la respuesta contiene un mensaje de éxito
+          const successMessage = data.message;
+          
+          // Muestra el mensaje de éxito utilizando Toastr
+          this.toastr.success(successMessage, 'Éxito');
+          this.userForm.reset();
+          this.dialogRef.close();
+          // Puedes realizar cualquier otra acción después de un éxito aquí
+        } else {
+          // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+          this.toastr.error('Error desconocido', 'Error');
+          console.log('No Guardado');
+        }
+      },
+      (err) => {
+        // Utiliza el mensaje de error proporcionado por el servidor
+        this.toastr.error(err.error.error || 'Error desconocido', 'Error');
+        console.log('No Guardado');
+      }
+    );
   }
-
-
 }

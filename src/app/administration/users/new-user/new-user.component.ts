@@ -16,7 +16,7 @@ import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.compon
 export class NewUserComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['idEmployee', 'position', 'code', 'name', 'lastName', 'idCampus', 'idWorkPosition','addressReference', 'accions'];
+  displayedColumns: string[] = ['idEmployee', 'position', 'userCode', 'name', 'lastName', 'idCampus', 'idWorkPosition','addressReference', 'accions'];
   dataSource: MatTableDataSource<EmployeesModel> = new MatTableDataSource<EmployeesModel>(); 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;

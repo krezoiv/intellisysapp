@@ -11,28 +11,12 @@
     margin-bottom: 15px;
   }
   
-  label {
-    display: block;
-    font-weight: bold;
+ 
+  mat-form-field {
+    width: 100%;
   }
   
-  input[type="text"],
-  select,
-  input[type="date"] {
-   width: calc(100% - 94px);
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  select {
-    height: 30px;
-  }
-  
-  input[type="date"] {
-    height: 30px;
-  }
-  
+ 
   form {
     width: 100%;
     margin: auto;

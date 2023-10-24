@@ -10,6 +10,7 @@ export class UserModel {
         public password : string,
         public idRole: RoleModel,
         public idStatus: StatusModel,
-        public idEmployee : EmployeesModel
+        public idEmployee : EmployeesModel,
+        public code : string
     ){}
 }
