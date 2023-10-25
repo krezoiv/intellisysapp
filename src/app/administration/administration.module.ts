@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ListEmployeesComponent } from './employees/list-employees/list-employees.component';
 import { DialogEditEmployeeComponent } from './employees/dialog-edit-employee/dialog-edit-employee.component';
 import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employee/dialog-delete-employee.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -55,6 +57,9 @@ import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employe
     MatSortModule,
     MatDialogModule,  
     MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     ToastrModule.forRoot(), // Agrega ToastrModule a la lista de imports
   ]
 })

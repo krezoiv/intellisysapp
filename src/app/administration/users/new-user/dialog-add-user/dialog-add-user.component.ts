@@ -45,9 +45,7 @@ export class DialogAddUserComponent {
       this.userForm.controls['campusName'].setValue(this.addNewUser.campusName);
       this.userForm.controls['userCode'].setValue(this.addNewUser.code);
       this.userForm.controls['firstName'].setValue(this.addNewUser.firstName);
-      this.userForm.controls['firstLastName'].setValue(
-        this.addNewUser.firstLastName
-      );
+      this.userForm.controls['firstLastName'].setValue(this.addNewUser.firstLastName);
       this.userForm.controls['idEmployee'].setValue(this.addNewUser.idEmployee);
     }
     this.loadRoles();

@@ -130,7 +130,7 @@ export class NewEmployeeComponent {
   }
 
   onEmployeesTypeSelected(event: any) {
-    const selectedEmployeeTypeId = event.target.value;
+    const selectedEmployeeTypeId = event.value;
     if (
       selectedEmployeeTypeId !== undefined &&
       selectedEmployeeTypeId !== null
@@ -168,39 +168,16 @@ export class NewEmployeeComponent {
     );
   }
 
-  // Maneja la selección de un departamento en el formulario.
   onDepartmentSelected(event: any) {
-    const selectedDepartmentID = event.target.value;
+    const selectedDepartmentID = event.value; // Utiliza event.value para obtener el valor seleccionado
     console.log('Selected Department ID:', selectedDepartmentID);
-
+  
     if (selectedDepartmentID !== undefined && selectedDepartmentID !== null) {
       // Llama a la función para cargar los municipios por departamento.
       this.loadMunicipalitiesByDepartment(selectedDepartmentID);
     }
   }
-
- /*createEmployee() {
-    this.formSubmitted = true;
-
-    if (this.employeeForm.invalid) {
-      this.toastr.info('Faltan Campos por llenar', 'Alerta');
-      return;
-    }
-
-    this._employeeService.createEmployee(this.employeeForm.value).subscribe(
-      (response: any) => {
-        this.toastr.success('Empleado creado con éxito', 'Éxito');
-        this.employeeForm.reset();
-      },
-      (error: any) => {
-        console.error('Error al crear el empleado:', error);
-        this.toastr.error(
-          'Error al crear el empleado. Por favor, inténtelo de nuevo.',
-          'Error'
-        );
-      }
-    );
-  }*/
+  
 
   createEmployee(){
     this._employeeService.createEmployee(this.employeeForm.value).subscribe(

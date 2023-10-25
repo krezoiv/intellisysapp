@@ -1,33 +1,63 @@
-
-form {
-    width: 100%;
-    margin: auto;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    margin-top: 20px;
-    min-height: 100vh;
-    background-color: white;
+.container {
+  padding: 10px;
+  background-color: white;
 }
 
-table {
+mat-form-field {
   width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
 }
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+
+
 .pointer {
   cursor: pointer;
   text-align: center;
 }
 
-mat-form-field{
-  width: 50%;
-  
-}
-
-.filter {
-  display: flex;
-  justify-content: center;
-  
-}
-
+/* Para ocultar columnas en dispositivos más pequeños */
 .hidden-column {
   display: none;
+}
+
+@media screen and (max-width: 600px) {
+  /* Estilos para dispositivos con ancho menor o igual a 600px */
+  .container {
+    padding: 5px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+/* En tu archivo CSS o en el estilo de tu componente Angular */
+.mat-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mat-row, .mat-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.mat-header-row {
+  background-color: #f5f5f5; /* Cambia el color de fondo según tu diseño */
+}
+
+.mat-cell, .mat-header-cell {
+  flex-basis: calc(20% - 32px); /* Ajusta el ancho de la celda según tus necesidades */
+  padding: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

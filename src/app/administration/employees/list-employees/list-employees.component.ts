@@ -6,6 +6,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { EmployeesService } from 'src/app/services/employees.service';
 import { EmployeesModel } from 'src/app/data/models/employees.model';
+import { DialogEditEmployeeComponent } from '../dialog-edit-employee/dialog-edit-employee.component';
+import { DialogDeleteEmployeeComponent } from '../dialog-delete-employee/dialog-delete-employee.component';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class ListEmployeesComponent {
   @ViewChild(MatSort ) sort!: MatSort;
 
   constructor(
-    private _employeesService : EmployeesService
+    private _employeesService : EmployeesService,
+    private _editEmployeeDialog : MatDialog
   ){}
 
   ngOnInit(): void {
@@ -54,6 +57,14 @@ export class ListEmployeesComponent {
   }
 
   openEditUserDialog(row: any){
+
+    this._editEmployeeDialog.open(DialogEditEmployeeComponent, {
+      width: '70%',
+      data: row
+    })
+  }
+
+  openDeleteUserDialog(row: any){
 
   }
 
