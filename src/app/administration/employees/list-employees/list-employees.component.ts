@@ -17,7 +17,7 @@ import { DialogDeleteEmployeeComponent } from '../dialog-delete-employee/dialog-
 })
 export class ListEmployeesComponent {
 
-  displayedColumns: string[] = ['idEmployee', 'position','userCode', 'firstName', 'secondName', 'firstLastName', 'secondLastName', 'hireDate', 'idCampus', 'idWorkPosition', 'idMunicipality', 'addressReference', 'BACaccount', 'BAMaccount', 'actions'];
+  displayedColumns: string[] = ['idEmployee', 'position','userCode', 'firstName', 'secondName', 'firstLastName', 'secondLastName', 'hireDate', 'idCampus','campus', 'idWorkPosition', 'idMunicipality', 'municipality', 'addressReference', 'BACaccount', 'BAMaccount', 'actions'];
   dataSource: MatTableDataSource<EmployeesModel> = new MatTableDataSource<EmployeesModel>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;
@@ -47,7 +47,7 @@ export class ListEmployeesComponent {
       (employees) => {
         // Asignar la lista de empleados al dataSource
         this.dataSource.data = employees;
-        console.log(this.dataSource)
+        console.log(employees)
       },
       (error) => {
         // Maneja errores en caso de que ocurran al obtener la lista de empleados.
@@ -56,7 +56,7 @@ export class ListEmployeesComponent {
     );
   }
 
-  openEditUserDialog(row: any){
+  openEditUserDialog(row: EmployeesModel){
 
     this._editEmployeeDialog.open(DialogEditEmployeeComponent, {
       width: '70%',

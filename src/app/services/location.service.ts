@@ -104,4 +104,8 @@ getMunicipalitiesByDepartment(idDepartment: number): Observable<MunicipalityMode
 
 }
 
+getMunicipalityById(idMunicipality : number) : Observable<MunicipalityModel[]>{
+  return this._http.get<MunicipalityModel[]>(`${API_URL}/municipality/${idMunicipality}`, this.headers)
+}
+
 }

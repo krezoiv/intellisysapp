@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CampusModel } from 'src/app/data/models/campus.models';
 import { DepartmetsModel } from 'src/app/data/models/department.model';
 import { EmployeeTypeModel } from 'src/app/data/models/employee-type';
+import { EmployeesModel } from 'src/app/data/models/employees.model';
 import { MunicipalityModel } from 'src/app/data/models/municipality.models';
 import { WorkPositionModel } from 'src/app/data/models/work-position.models';
 import { EmployeesService } from 'src/app/services/employees.service';
@@ -17,6 +18,7 @@ import { WorkPositionService } from 'src/app/services/work-position.service';
   styleUrls: ['./dialog-edit-employee.component.css'],
 })
 export class DialogEditEmployeeComponent {
+  public employeeData!: EmployeesModel; // Debes importar EmployeesModel desde tu modelo
   employeeForm!: FormGroup;
 
   public campus: CampusModel[] = [];
@@ -38,9 +40,7 @@ export class DialogEditEmployeeComponent {
 
   ngOnInit(): void {
 
-    this.loadCampus();
-    this.loadDepartments();
-    this.loadEmployeeType();
+    
     
    this.employeeForm = this.fb.group({
     code: ['', Validators.required],
@@ -67,14 +67,25 @@ export class DialogEditEmployeeComponent {
    this.employeeForm.controls['secondLastName'].setValue(this.editEmployee.secondLastName);
    this.employeeForm.controls['hireDate'].setValue(this.editEmployee.hireDate);
    this.employeeForm.controls['idCampus'].setValue(this.editEmployee.idCampus);
-   this.employeeForm.controls['idEmployeeType'].setValue(this.editEmployee.employeeType);
-   this.employeeForm.controls['idWorkPosition'].setValue(this.editEmployee.workPosition);
-   this.employeeForm.controls['idDepartment'].setValue(this.editEmployee.department);
-   this.employeeForm.controls['idMunicipality'].setValue(this.editEmployee.municipality);
+   this.employeeForm.controls['idEmployeeType'].setValue(this.editEmployee.idEmployeeType);
+   this.employeeForm.controls['idWorkPosition'].setValue(this.editEmployee.idWorkPosition);
+   this.employeeForm.controls['idDepartment'].setValue(this.editEmployee.idDepartment);
+   this.employeeForm.controls['idMunicipality'].setValue(this.editEmployee.idMunicipality);
    this.employeeForm.controls['addressReference'].setValue(this.editEmployee.addressReference);
    this.employeeForm.controls['BACaccount'].setValue(this.editEmployee.BACaccount);
    this.employeeForm.controls['BAMaccount'].setValue(this.editEmployee.BAMaccount);
   }
+
+  
+  this.loadCampus();
+    this.loadDepartments();
+  
+    this.loadEmployeeType();
+
+    this.getMunicipality()
+    console.log('formulario ', this.employeeForm.value)
+
+    
   }
 
   
@@ -138,6 +149,16 @@ export class DialogEditEmployeeComponent {
     );
   }
 
+  getMunicipality(){
+    const idMunicipality = this.employeeForm!.get('idMunicipality')!.value;
+    this._locationService.getMunicipalityById(idMunicipality).subscribe(
+      (municipality)=>{
+        this.municipality = municipality
+        console.log(municipality)
+      }
+    )
+  }
+
   loadMunicipalitiesByDepartment(departmentID: number) {
     this._locationService.getMunicipalitiesByDepartment(departmentID).subscribe(
       (municipalities) => {
@@ -161,5 +182,8 @@ export class DialogEditEmployeeComponent {
     }
   }
 
-  editEmployees() {}
+  
+  editEmployees() {
+    
+  }
 }
