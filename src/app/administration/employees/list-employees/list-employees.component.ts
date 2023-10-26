@@ -17,7 +17,7 @@ import { DialogDeleteEmployeeComponent } from '../dialog-delete-employee/dialog-
 })
 export class ListEmployeesComponent {
 
-  displayedColumns: string[] = ['idEmployee', 'position','userCode', 'firstName', 'secondName', 'firstLastName', 'secondLastName', 'hireDate', 'idCampus','campus', 'idWorkPosition', 'idMunicipality', 'municipality', 'addressReference', 'BACaccount', 'BAMaccount', 'actions'];
+  displayedColumns: string[] = ['idEmployee', 'position','userCode', 'firstName', 'secondName', 'firstLastName', 'secondLastName', 'hireDate', 'idCampus','campus', 'idWorkposition', 'workPosition', 'idMunicipality', 'municipality', 'addressReference', 'BACaccount', 'BAMaccount', 'actions'];
   dataSource: MatTableDataSource<EmployeesModel> = new MatTableDataSource<EmployeesModel>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort ) sort!: MatSort;

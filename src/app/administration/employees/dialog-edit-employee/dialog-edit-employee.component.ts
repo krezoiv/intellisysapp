@@ -51,8 +51,8 @@ export class DialogEditEmployeeComponent {
     hireDate: ['', Validators.required],
     idCampus: ['', Validators.required],
     idEmployeeType: ['', Validators.required],
+    idWorkposition: ['', Validators.required],
     idStatus: [1],
-    idWorkPosition: ['', Validators.required],
     idDepartment: ['', Validators.required],
     idMunicipality: ['', Validators.required],
     addressReference: ['', Validators.required],
@@ -68,7 +68,7 @@ export class DialogEditEmployeeComponent {
    this.employeeForm.controls['hireDate'].setValue(this.editEmployee.hireDate);
    this.employeeForm.controls['idCampus'].setValue(this.editEmployee.idCampus);
    this.employeeForm.controls['idEmployeeType'].setValue(this.editEmployee.idEmployeeType);
-   this.employeeForm.controls['idWorkPosition'].setValue(this.editEmployee.idWorkPosition);
+   this.employeeForm.controls['idWorkposition'].setValue(this.editEmployee.idWorkposition);
    this.employeeForm.controls['idDepartment'].setValue(this.editEmployee.idDepartment);
    this.employeeForm.controls['idMunicipality'].setValue(this.editEmployee.idMunicipality);
    this.employeeForm.controls['addressReference'].setValue(this.editEmployee.addressReference);
@@ -82,7 +82,8 @@ export class DialogEditEmployeeComponent {
   
     this.loadEmployeeType();
 
-    this.getMunicipality()
+    this.getMunicipality();
+    this.getWorkPosition();
     console.log('formulario ', this.employeeForm.value)
 
     
@@ -132,7 +133,7 @@ export class DialogEditEmployeeComponent {
       selectedEmployeeTypeId !== null
     ) {
       this.loadWorkPositionByEmployeeType(selectedEmployeeTypeId);
-      this.employeeForm.patchValue({ idWorkPosition: '' }); // Esto inicializará el campo a vacío
+      this.employeeForm.patchValue({ idWorkposition: '' }); // Esto inicializará el campo a vacío
     }
   }
 
@@ -159,6 +160,17 @@ export class DialogEditEmployeeComponent {
     )
   }
 
+  getWorkPosition(){
+    const idWorkposition = this.employeeForm!.get('idWorkposition')!.value;
+    this._workPositionService.getWorkPositionById(idWorkposition).subscribe(
+      (workPosition)=> {
+        this.workPosition = workPosition
+        console.log(workPosition)
+      }
+    )
+  }
+
+
   loadMunicipalitiesByDepartment(departmentID: number) {
     this._locationService.getMunicipalitiesByDepartment(departmentID).subscribe(
       (municipalities) => {
@@ -184,6 +196,6 @@ export class DialogEditEmployeeComponent {
 
   
   editEmployees() {
-    
+    console.log(this.employeeForm.value)
   }
 }

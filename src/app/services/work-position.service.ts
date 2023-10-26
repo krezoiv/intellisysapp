@@ -83,18 +83,11 @@ return {
  */
 getWorkList(): Observable<WorkPositionModel[]> {
   return this._http.get<WorkPositionModel[]>(`${API_URL}/workPosition`, this.headers)
-      .pipe(
-          catchError((error: HttpErrorResponse) => {
-              if (error.status === 401) {
-                  console.error('Error de autorización:', error.message);
-                  return throwError('Error de autorización: Redirigiendo a la página de inicio de sesión.');
-              } else {
-                  // Maneja otros errores de manera genérica.
-                  console.error('Error en la solicitud de posición de trabajo:', error);
-                  return throwError('No se pudo obtener la lista de posición de trabajo. Por favor, inténtelo de nuevo.');
-              }
-          })
-      );
+      
+}
+
+getWorkPositionById(idWorkposition: number): Observable<WorkPositionModel[]>{
+  return this._http.get<WorkPositionModel[]>(`${API_URL}/workposition/${idWorkposition}`, this.headers)
 }
 
 }

@@ -63,10 +63,16 @@
         <td mat-cell *matCellDef="let element"> {{element.campusName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="idWorkPosition">
+      <ng-container matColumnDef="idWorkposition">
+        <th mat-header-cell *matHeaderCellDef> Cargo </th>
+        <td mat-cell *matCellDef="let element"> {{element.idWorkposition}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="workPosition">
         <th mat-header-cell *matHeaderCellDef> Cargo </th>
         <td mat-cell *matCellDef="let element"> {{element.workPosition}} </td>
       </ng-container>
+  
   
       <ng-container matColumnDef="idMunicipality">
         <th mat-header-cell *matHeaderCellDef> Municipio </th>

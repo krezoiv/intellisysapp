@@ -70,7 +70,7 @@ export class NewEmployeeComponent {
     idCampus: ['', Validators.required],
     idEmployeeType: ['', Validators.required],
     idStatus: [1],
-    idWorkPosition: ['', Validators.required],
+    idWorkposition: ['', Validators.required],
     idDepartment: ['', Validators.required],
     idMunicipality: ['', Validators.required],
     addressReference: ['', Validators.required],

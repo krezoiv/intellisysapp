@@ -59,6 +59,17 @@
             </mat-select>
           </mat-form-field>
         </div>
+
+
+
+
+
+
+
+
+
+
+
         <div class="col-md-4">
          <mat-form-field appearance="outline">
             <mat-label>Municipio:</mat-label>
@@ -69,6 +80,8 @@
             </mat-select>
           </mat-form-field>
         </div>
+
+
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -117,16 +130,17 @@
             </mat-select>
           </mat-form-field>
         </div>
+
         <div class="col-md-4">
-         <mat-form-field appearance="outline">
-            <mat-label>Posición de Trabajo:</mat-label>
-            <mat-select formControlName="idWorkPosition">
-              <mat-option *ngFor="let workPositionItem of workPosition" [value]="workPositionItem.idWorkposition">
-                {{ workPositionItem.workPosition }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+          <mat-form-field appearance="outline">
+             <mat-label>Posicion:</mat-label>
+             <mat-select formControlName="idWorkposition">
+               <mat-option *ngFor="let workPositionItem of workPosition" [value]="workPositionItem.idWorkposition">
+                 {{ workPositionItem.workPosition }}
+               </mat-option>
+             </mat-select>
+           </mat-form-field>
+         </div>
       </div>
       <div mat-dialog-action [align]="'end'">
         <button mat-raised-button color="primary" style="margin-left: 20px">Guardar</button>
