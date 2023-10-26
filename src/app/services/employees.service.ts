@@ -130,4 +130,9 @@ export class EmployeesService {
   getEmployeeDetails(): Observable<EmployeesModel[]>{
     return this._http.get<EmployeesModel[]>(`${API_URL}/employees`, this.headers);
   }
+
+  updateEmployee(idEmployee : number, employeeData : EmployeesModel) : Observable<EmployeesModel[]>
+ {
+  return this._http.put<EmployeesModel[]>(`${API_URL}/employee/${idEmployee}`, employeeData, this.headers);
+ }
 }

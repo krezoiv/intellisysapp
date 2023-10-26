@@ -47,6 +47,7 @@ export class DialogEditEmployeeComponent {
     
     
    this.employeeForm = this.fb.group({
+    idEmployee: ['', Validators.required],
     code: ['', Validators.required],
     firstName: ['', Validators.required],
     secondName: ['', Validators.required],
@@ -55,8 +56,8 @@ export class DialogEditEmployeeComponent {
     hireDate: ['', Validators.required],
     idCampus: ['', Validators.required],
     idEmployeeType: ['', Validators.required],
-    idWorkposition: ['', Validators.required],
     idStatus: [1],
+    idWorkposition: ['', Validators.required],
     idDepartment: ['', Validators.required],
     idMunicipality: ['', Validators.required],
     addressReference: ['', Validators.required],
@@ -64,6 +65,7 @@ export class DialogEditEmployeeComponent {
     BAMaccount: ['', Validators.required],
    });
    if(this.editEmployee){
+    this.employeeForm.controls['idEmployee'].setValue(this.editEmployee.idEmployee);
    this.employeeForm.controls['code'].setValue(this.editEmployee.code);
    this.employeeForm.controls['firstName'].setValue(this.editEmployee.firstName);
    this.employeeForm.controls['secondName'].setValue(this.editEmployee.secondName);
@@ -205,8 +207,22 @@ export class DialogEditEmployeeComponent {
     }
   }
 
-  
-  editEmployees() {
-    console.log(this.employeeForm.value)
+  editEmployeee(){
+    const idEmployee = this.employeeForm!.get('idEmployee')!.value; // Obtén el ID del empleado a partir de la variable `editEmployee`
+    const updatedEmployeeData = this.employeeForm.value;
+
+    this._employeeService.updateEmployee(idEmployee, updatedEmployeeData).subscribe(
+      (response) => {
+        // Maneja la respuesta exitosa aquí, por ejemplo, muestra un mensaje de éxito.
+        this.toastr.success('Empleado actualizado con éxito', 'Éxito');
+        this.dialogRef.close(true); // Cierra el diálogo con un indicador de éxito
+      },
+      (error) => {
+        // Maneja los errores, por ejemplo, muestra un mensaje de error.
+        this.toastr.error('Error al actualizar el empleado', 'Error');
+        console.error('Error al actualizar el empleado:', error);
+      }
+    );
   }
+  
 }
