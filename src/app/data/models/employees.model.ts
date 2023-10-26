@@ -17,7 +17,7 @@ export class EmployeesModel {
       public hireEndDate : string,
       public idCampus : CampusModel,
       public idStatus : StatusModel,
-      public idWorkPosition : WorkPositionModel,
+      public idWorkposition : WorkPositionModel,
       public idMunicipality : MunicipalityModel,
       public addressReference : string,
       public BACaccount : string,

@@ -136,7 +136,7 @@ export class NewEmployeeComponent {
       selectedEmployeeTypeId !== null
     ) {
       this.loadWorkPositionByEmployeeType(selectedEmployeeTypeId);
-      this.employeeForm.patchValue({ idWorkPosition: '' }); // Esto inicializará el campo a vacío
+      this.employeeForm.patchValue({ idWorkposition: '' }); // Esto inicializará el campo a vacío
     }
   }
 

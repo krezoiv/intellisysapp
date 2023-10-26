@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -11,6 +12,8 @@ import { WorkPositionModel } from 'src/app/data/models/work-position.models';
 import { EmployeesService } from 'src/app/services/employees.service';
 import { LocationService } from 'src/app/services/location.service';
 import { WorkPositionService } from 'src/app/services/work-position.service';
+
+
 
 @Component({
   selector: 'app-dialog-edit-employee',
@@ -31,6 +34,7 @@ export class DialogEditEmployeeComponent {
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private datePipe: DatePipe, // Inyecta DatePipe
     @Inject(MAT_DIALOG_DATA)  public editEmployee : any,
     private dialogRef: MatDialogRef<DialogEditEmployeeComponent>,
     private _locationService: LocationService,
@@ -65,7 +69,14 @@ export class DialogEditEmployeeComponent {
    this.employeeForm.controls['secondName'].setValue(this.editEmployee.secondName);
    this.employeeForm.controls['firstLastName'].setValue(this.editEmployee.firstLastName);
    this.employeeForm.controls['secondLastName'].setValue(this.editEmployee.secondLastName);
-   this.employeeForm.controls['hireDate'].setValue(this.editEmployee.hireDate);
+   const parts = this.editEmployee.hireDate.split('-');
+  if (parts.length === 3) {
+    const day = +parts[0]; // Convierte a número
+    const month = +parts[1];
+    const year = +parts[2];
+    const formattedHireDate = new Date(year, month - 1, day); // El mes debe ser 0-based
+    this.employeeForm.controls['hireDate'].setValue(formattedHireDate);
+  }
    this.employeeForm.controls['idCampus'].setValue(this.editEmployee.idCampus);
    this.employeeForm.controls['idEmployeeType'].setValue(this.editEmployee.idEmployeeType);
    this.employeeForm.controls['idWorkposition'].setValue(this.editEmployee.idWorkposition);
