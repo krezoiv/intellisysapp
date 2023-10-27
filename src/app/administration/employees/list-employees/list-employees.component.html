@@ -104,6 +104,9 @@
           <button mat-icon-button color="primary" class="pointer" matTooltip="editar empleado" (click)="openEditUserDialog(row)">
             <mat-icon>edit</mat-icon>
           </button>
+          <button mat-icon-button color="primary" class="pointer" matTooltip="dar de baja empleado" (click)="deActivateEmployee(row.idEmployee)">
+            <mat-icon>block</mat-icon>
+          </button>
           <button mat-icon-button color="primary" class="pointer" matTooltip="eliminar empleado" (click)="openDeleteUserDialog(row)">
             <mat-icon>delete</mat-icon>
           </button>

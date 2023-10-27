@@ -1,4 +1,4 @@
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -127,12 +127,37 @@ export class EmployeesService {
     );
   }
 
-  getEmployeeDetails(): Observable<EmployeesModel[]>{
-    return this._http.get<EmployeesModel[]>(`${API_URL}/employees`, this.headers);
+  getEmployeeDetails(): Observable<EmployeesModel[]> {
+    return this._http.get<EmployeesModel[]>(
+      `${API_URL}/employees`,
+      this.headers
+    );
   }
 
-  updateEmployee(idEmployee : number, employeeData : EmployeesModel) : Observable<EmployeesModel[]>
- {
-  return this._http.put<EmployeesModel[]>(`${API_URL}/employee/${idEmployee}`, employeeData, this.headers);
- }
+  updateEmployee(
+    idEmployee: number,
+    employeeData: EmployeesModel
+  ): Observable<EmployeesModel[]> {
+    return this._http.put<EmployeesModel[]>(
+      `${API_URL}/employee/${idEmployee}`,
+      employeeData,
+      this.headers
+    );
+  }
+
+  deActivateEmployee(
+    idEmployee: number
+  ) : Observable<EmployeesModel[]>{
+    return this._http.put<EmployeesModel[]>(
+      `${API_URL}/employeeDeactivate/${idEmployee}`,
+      this.headers
+    );
+  }
+
+  deleteEmployee(idEmployee: number): Observable<EmployeesModel[]> {
+    return this._http.delete<EmployeesModel[]>(
+      `${API_URL}/employee/${idEmployee}`,
+      this.headers
+    );
+  }
 }

@@ -1,1 +1,49 @@
-<p>dialog-delete-employee works!</p>
+<div class="container">
+    <div mat-dialog-content>
+      <form autocomplete="off" [formGroup]="employeeForm" (ngSubmit)="deleteEmployeee()">
+      <hr />
+      <h1>Datos Personales</h1>
+      <div class="row">
+        <div class="col-md-3">
+         <mat-form-field appearance="outline">
+            <mat-label>Código:</mat-label>
+            <input matInput formControlName="code" />
+          </mat-form-field>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+               <mat-label>Primer Nombre:</mat-label>
+               <input matInput formControlName="firstName" />
+             </mat-form-field>
+           </div>
+           <div class="col-md-4">
+            <mat-form-field appearance="outline">
+               <mat-label>Segundo Nombre:</mat-label>
+               <input matInput formControlName="secondName" />
+             </mat-form-field>
+           </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+         <mat-form-field appearance="outline">
+            <mat-label>Primer Apellido:</mat-label>
+            <input matInput formControlName="firstLastName" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+         <mat-form-field appearance="outline">
+            <mat-label>Segundo Apellido:</mat-label>
+            <input matInput formControlName="secondLastName" />
+          </mat-form-field>
+        </div>
+       </div>
+      <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="primary" style="margin-left: 20px">Guardar</button>
+      </div>
+    </form>
+    </div>
+   
+ 
+</div>
