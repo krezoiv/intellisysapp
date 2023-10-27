@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaintenanceComponent } from './maintenance.component';
 import { DashboardMaintenanceComponent } from './dashboard-maintenance/dashboard-maintenance.component';
 import { NewRoleComponent } from './roles/new-role/new-role.component';
+import { NewRouteComponent } from './routes/new-route/new-route.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: MaintenanceComponent,
     children:[
       { path: 'dashboard', component: DashboardMaintenanceComponent},
-      { path: 'NuevoRole', component: NewRoleComponent}
+      { path: 'nuevo-role', component: NewRoleComponent},
+      { path: 'nueva-ruta', component: NewRouteComponent}
     ],
   },
 ];

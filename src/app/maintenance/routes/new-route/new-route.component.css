@@ -1,0 +1,38 @@
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Efecto al pasar el ratón sobre los campos de entrada */
+mat-form-field:hover {
+    transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el campo */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Cambia la sombra al pasar el ratón sobre el campo */
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Agregar estilos de borde y centrado */
+  form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px; /* Aumenta el espacio alrededor del formulario */
+    box-sizing: border-box;
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid #ccc; /* Agrega un borde de 1px sólido */
+    border-radius: 5px; /* Agrega bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para resaltar el formulario */
+  }
+  
+  /* Agregar un margen inferior a los div dentro de mat-dialog-content */
+.div {
+    margin-bottom: 20px; /* Ajusta el valor según la separación deseada */
+  }
+
+.button {
+    width: 100%;
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: 20px;
+    color: white;
+    background-color: darkgreen;
+  }

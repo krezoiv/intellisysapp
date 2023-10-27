@@ -39,7 +39,7 @@ export class NewRoleComponent {
       } else {
         // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
         this.toastr.error('Error inesperado, intente de nuevo', 'Error');
-        console.log('No Guardado');
+        
       }
     },
     (err) => {

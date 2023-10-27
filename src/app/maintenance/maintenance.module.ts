@@ -17,12 +17,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { NewRouteComponent } from './routes/new-route/new-route.component';
 
 @NgModule({
   declarations: [
     MaintenanceComponent,
     DashboardMaintenanceComponent,
     NewRoleComponent,
+    NewRouteComponent,
   ],
   imports: [
     CommonModule,

@@ -1,25 +1,30 @@
-
 <p>
     <mat-toolbar class="toolbar"> <!-- Agrega la clase CSS red-background -->
         <span class="toolbar-title">Mantenimiento &nbsp;</span>
-        <span class="toolbar-divider"> ||&nbsp; </span>
-        <a class="link-style" [matMenuTriggerFor]="RolesMenu">
-            Roles
-            <mat-icon class="icon-above">person_pin</mat-icon> <!-- Icono de flecha hacia abajo -->
-        </a>
-        <span class="toolbar-item">
-            <a class="link-style" [matMenuTriggerFor]="WorkPositionsMenu">
-                | puestos
+        <span class="toolbar-divider"> ||&nbsp;
+            <a class="link-style" [matMenuTriggerFor]="RolesMenu">
+                Roles
                 <mat-icon class="icon-above">person_pin</mat-icon> <!-- Icono de flecha hacia abajo -->
             </a>
         </span>
+
         <mat-menu #RolesMenu="matMenu">
 
-            <button mat-menu-item><a mat-menu-item routerLink="/mantenimiento/NuevoRole">Agregar Role</a>Role</button>
+            <button mat-menu-item><a mat-menu-item routerLink="/mantenimiento/nuevo-role">Agregar Role</a></button>
+            <button mat-menu-item><a mat-menu-item routerLink="/mantenimiento/nueva-ruta">Nueva Ruta</a></button>
         </mat-menu>
-        <mat-menu #WorkPositionsMenu="matMenu">
-            <a mat-menu-item routerLink="/administracion/nuevoEmpleado">Agregar Empleado</a>
-            <a mat-menu-item routerLink="/retelecom/Ventas/EditarVenta">Editar Empleado</a>
+
+        <span class="toolbar-divider"> ||&nbsp;
+            <a class="link-style" [matMenuTriggerFor]="RoutesMenu">
+                Rutas
+                <mat-icon class="icon-above">person_pin</mat-icon> <!-- Icono de flecha hacia abajo -->
+            </a>
+        </span>
+
+        <mat-menu #RoutesMenu="matMenu">
+
+            <button mat-menu-item><a mat-menu-item routerLink="/mantenimiento/nueva-ruta">Nueva Ruta</a></button>
         </mat-menu>
+
     </mat-toolbar>
 </p>

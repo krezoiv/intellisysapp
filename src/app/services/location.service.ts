@@ -95,6 +95,15 @@ getDepartmentsList(): Observable<DepartmetsModel[]> {
 }
 
 /**
+ * Obtiene la lista de municipios de las sedes a través de una solicitud HTTP.
+ * @returns Un Observable que emite datos de tipo 'MunicipalityModel' o maneja errores.
+ */
+getMunicipalitiesOnCampus(): Observable<CampusModel[]> {
+  return this._http.get<CampusModel[]>(`${API_URL}/municipalitiesOnCampus`, this.headers)
+    
+}
+
+/**
  * Obtiene la lista de municipios por departamento a través de una solicitud HTTP.
  * @param idDepartment - El ID del departamento del cual se desea obtener los municipios.
  * @returns Un Observable que emite datos de tipo 'MunicipalityModel' o maneja errores.

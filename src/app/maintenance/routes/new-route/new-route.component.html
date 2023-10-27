@@ -1,0 +1,29 @@
+<div mat-dialog-content>
+    <form [formGroup]="routeForm">
+      <h1>Agregando Nueva Ruta</h1>
+  
+      <div class="div">
+        <mat-form-field appearance="outline">
+            <mat-label>Sede:</mat-label>
+            <mat-select formControlName="idCampus">
+              <mat-option *ngFor="let campus of campus" [value]="campus.idCampus">
+                {{ campus.campusName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <div lass="div">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre de la ruta</mat-label>
+            <input formControlName="routeName" matInput placeholder="¿Qué nombre tendrá la nueva?" />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Ruta que se agregará</mat-hint>
+          </mat-form-field>
+      </div>
+  
+      <div  class="div" mat-dialog-action [align]="'center'" >
+        <button class="button"   (click)="createRoue()">Guardar</button>
+      </div>
+    </form>
+  </div>
+  
