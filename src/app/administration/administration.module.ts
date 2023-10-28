@@ -28,6 +28,7 @@ import { DialogEditEmployeeComponent } from './employees/dialog-edit-employee/di
 import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employee/dialog-delete-employee.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DlpAssignmentComponent } from './employees/dlp-assignment/dlp-assignment.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     DialogAddUserComponent,
     ListEmployeesComponent,
     DialogEditEmployeeComponent,
-    DialogDeleteEmployeeComponent
+    DialogDeleteEmployeeComponent,
+    DlpAssignmentComponent
   ],
   imports: [
     CommonModule,

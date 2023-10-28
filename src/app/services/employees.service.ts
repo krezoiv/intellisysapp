@@ -127,12 +127,23 @@ export class EmployeesService {
     );
   }
 
+  sesarchEmployeeRoutes(code: string): Observable<EmployeesModel[]>{
+    
+    return this._http.post<EmployeesModel[]>(
+      `${API_URL}/employeeCampusRoutes`,
+      
+      this.headers
+    );
+  }
+
+
   getEmployeeDetails(): Observable<EmployeesModel[]> {
     return this._http.get<EmployeesModel[]>(
       `${API_URL}/employees`,
       this.headers
     );
   }
+
 
   updateEmployee(
     idEmployee: number,
@@ -160,4 +171,6 @@ export class EmployeesService {
       this.headers
     );
   }
+
+ 
 }

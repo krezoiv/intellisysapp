@@ -5,6 +5,7 @@ import { DashboardAdministrationComponent } from './dashboard-administration/das
 import { NewEmployeeComponent } from './employees/new-employee/new-employee.component';
 import { NewUserComponent } from './users/new-user/new-user.component';
 import { ListEmployeesComponent } from './employees/list-employees/list-employees.component';
+import { DlpAssignmentComponent } from './employees/dlp-assignment/dlp-assignment.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'nuevo-empleado', component: NewEmployeeComponent },
       { path: 'listado-de-empleados', component: ListEmployeesComponent},
       { path: 'nuevo-usuario', component: NewUserComponent},
+      { path: 'asignacion-dlp', component: DlpAssignmentComponent},
     ],
   },
 ];

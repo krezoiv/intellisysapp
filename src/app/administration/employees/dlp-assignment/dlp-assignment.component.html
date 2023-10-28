@@ -1,0 +1,65 @@
+<div mat-dialog-content>
+    <form [formGroup]="dlpAssignmetForm">
+        <h1>Asignación de DLP</h1>
+
+
+
+        <div lass="div">
+            <mat-form-field appearance="outline">
+                <mat-label>Código de Empleado:</mat-label>
+                <input formControlName="code" matInput placeholder="ingrese código del empleado" />
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Ruta que se agregará</mat-hint>
+            </mat-form-field>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre:</mat-label>
+                    <input matInput formControlName="firstName" />
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Apeliido:</mat-label>
+                    <input matInput formControlName="firstLastName" />
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Puesto:</mat-label>
+                    <input matInput formControlName="workPosition" />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <hr>
+        <div class="centrarDiv">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sede:</mat-label>
+                        <input matInput formControlName="campusName" />
+                    </mat-form-field>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline">
+                       <mat-label>Municipio:</mat-label>
+                       <mat-select formControlName="idRoute">
+                         <mat-option *ngFor="let employee of employee" [value]="employee.idMunicipality">
+                           {{ employee.firstLastName }}
+                         </mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+            </div>
+        </div>
+
+        <div class="div" mat-dialog-action [align]="'center'">
+            <button class="button" (click)="saveDlpAssignment()">Guardar</button>
+        </div>
+    </form>
+</div>
