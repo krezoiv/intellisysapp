@@ -45,7 +45,7 @@ export class NewRoleComponent {
     (err) => {
       // Utiliza el mensaje de error proporcionado por el servidor
       this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
-      console.log('No Guardado');
+      
     }
   );
 }

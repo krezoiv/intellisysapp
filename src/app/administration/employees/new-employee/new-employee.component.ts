@@ -179,26 +179,71 @@ export class NewEmployeeComponent {
   }
   
 
-  createEmployee(){
-    this._employeeService.createEmployee(this.employeeForm.value).subscribe(
-      (data : any) =>{
-        if (data.message) {
-          // Comprobar si la respuesta contiene un mensaje de éxito
-          const successMessage = data.message;
-          
-          // Muestra el mensaje de éxito utilizando Toastr
-          this.toastr.success(successMessage, 'Éxito');
-          this.employeeForm.reset();
-          
-          // Puedes realizar cualquier otra acción después de un éxito aquí
-        } else {
-          // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
-          this.toastr.error('Error inesperado, intente de nuevo', 'Error');
+  /*createEmployee(){
+    if (this.employeeForm.valid){
+      this._employeeService.createEmployee(this.employeeForm.value).subscribe(
+        (data : any) =>{
+          if (data.message) {
+            // Comprobar si la respuesta contiene un mensaje de éxito
+            const successMessage = data.message;
+            
+            // Muestra el mensaje de éxito utilizando Toastr
+            this.toastr.success(successMessage, 'Éxito');
+            this.employeeForm.reset();
+            
+            // Puedes realizar cualquier otra acción después de un éxito aquí
+          } else {
+            // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+            this.toastr.error('Error inesperado, intente de nuevo', 'Error');
+          }
+        },
+        (err) => {
+          this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
         }
-      },
-      (err) => {
-        this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
-      }
-    )
+      )
+    }
+  }*/
+
+
+  createEmployee(){
+    if(this.employeeForm.valid){
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Deseas guardar el empleado',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      }).then((result)=> {
+        if(result.isConfirmed){
+          this._employeeService.createEmployee(this.employeeForm.value).subscribe(
+            (data : any) =>{
+              if (data.message) {
+                // Comprobar si la respuesta contiene un mensaje de éxito
+                const successMessage = data.message;
+                
+                // Muestra el mensaje de éxito utilizando Toastr
+                this.toastr.success(successMessage, 'Éxito');
+                this.employeeForm.reset();
+                
+                // Puedes realizar cualquier otra acción después de un éxito aquí
+              } else {
+                // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+                this.toastr.error('Error inesperado, intente de nuevo', 'Error');
+              }
+            },
+            (err) => {
+              this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
+            }
+          )
+        }
+      });
+    } else {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, complete todos los campos requeridos antes de guardar.',
+        icon: 'warning',
+      })
+    }
   }
 }

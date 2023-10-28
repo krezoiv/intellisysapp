@@ -8,6 +8,7 @@ import { WorkPositionModel } from '../data/models/work-position.models';
 import { EmployeeTypeModel } from '../data/models/employee-type';
 import { EmployeesModel } from '../data/models/employees.model';
 
+
 const API_URL = environment.API_URL;
 
 /**
@@ -127,15 +128,7 @@ export class EmployeesService {
     );
   }
 
-  sesarchEmployeeRoutes(code: string): Observable<EmployeesModel[]>{
-    
-    return this._http.post<EmployeesModel[]>(
-      `${API_URL}/employeeCampusRoutes`,
-      
-      this.headers
-    );
-  }
-
+ 
 
   getEmployeeDetails(): Observable<EmployeesModel[]> {
     return this._http.get<EmployeesModel[]>(
@@ -172,5 +165,11 @@ export class EmployeesService {
     );
   }
 
+  getEmployeeByCode(code: string) {
+    return this._http.post<any>(
+      `${API_URL}/employeeCampusRoutes`,
+      { code }, this.headers
+    );
+  }
  
 }

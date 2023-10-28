@@ -1,33 +1,49 @@
-
-  form {
-    width: 100%;
-    margin: auto;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    margin-top: 20px;
-    min-height: 100vh;
-    background-color: white;
+.form-group {
+  margin-bottom: 15px;
+}
+form {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px; /* Aumenta el espacio alrededor del formulario */
+  box-sizing: border-box;
+  margin-top: 20px;
+  background-color: white;
+  border: 1px solid #ccc; /* Agrega un borde de 1px sólido */
+  border-radius: 5px; /* Agrega bordes redondeados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para resaltar el formulario */
 }
 
-table {
-  width: 100%;
-}
-.pointer {
-  cursor: pointer;
-  text-align: center;
-}
+
 
 mat-form-field{
   width: 100%;
+  padding-top: 10px;
   
 }
-
-.filter {
-  display: flex;
-  justify-content: left;
-  
+mat-form-field:hover {
+  transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el campo */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Cambia la sombra al pasar el ratón sobre el campo */
 }
 
-.hidden-column {
-  display: none;
+.buttonSave {
+  width: 100%; /* El botón ocupará todo el ancho del contenedor */
+  height: 50px;
+  margin: 0 auto; /* Centra horizontalmente */
+  margin-top: 10px; /* Espacio superior de 10px */
+  color: white;
+  background-color: darkgreen;
+  border: none; /* Elimina el borde del botón */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
+  border-radius: 5px; /* Agrega bordes redondeados */
+}
+
+.buttonSave:hover {
+  background-color: forestgreen; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+mat-icon {
+
+  
+  margin-left: 10px; /* Espacio a la derecha del ícono */
+
 }

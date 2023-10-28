@@ -7,6 +7,8 @@ import { catchError } from 'rxjs/operators';
 import { CampusModel } from '../data/models/campus.models';
 import { DepartmetsModel } from '../data/models/department.model';
 import { MunicipalityModel } from '../data/models/municipality.models';
+import { EmployeesModel } from '../data/models/employees.model';
+import { RouteModel } from '../data/models/routes.models';
 
 
 const API_URL = environment.API_URL
@@ -115,6 +117,10 @@ getMunicipalitiesByDepartment(idDepartment: number): Observable<MunicipalityMode
 
 getMunicipalityById(idMunicipality : number) : Observable<MunicipalityModel[]>{
   return this._http.get<MunicipalityModel[]>(`${API_URL}/municipality/${idMunicipality}`, this.headers)
+}
+
+getRoutesByCode(employeeData : EmployeesModel) : Observable<RouteModel[]>{
+  return this._http.post<RouteModel[]>(`${API_URL}/employeesByCodeCampus/`, employeeData, this.headers)
 }
 
 }

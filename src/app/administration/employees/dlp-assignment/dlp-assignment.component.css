@@ -31,16 +31,45 @@ mat-form-field:hover {
 
 .button {
     width: 100%;
+    height: 50px;
     margin: 0 auto; /* Centra horizontalmente */
-    margin-top: 20px;
+    margin-top: 0px;
     color: white;
-    background-color: darkgreen;
+    background-color:darkorchid ;
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
+    border-radius: 5px; /* Agrega bordes redondeados */
   }
 
+  .buttonSave {
+    width: 100%; /* El botón ocupará todo el ancho del contenedor */
+    height: 50px;
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: 10px; /* Espacio superior de 10px */
+    color: white;
+    background-color: darkgreen;
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
+    border-radius: 5px; /* Agrega bordes redondeados */
+  }
+  
+  .buttonSave:hover {
+    background-color: forestgreen; /* Cambia el color de fondo al pasar el ratón por encima */
+  }
+
+  button:hover {
+    background-color:blueviolet; /* Cambia el color de fondo al pasar el ratón por encima */
+  }
   .centrarDiv {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    height: 100%;
-  }
+}
+mat-icon {
+
+  
+  margin-left: 10px; /* Espacio a la derecha del ícono */
+
+}

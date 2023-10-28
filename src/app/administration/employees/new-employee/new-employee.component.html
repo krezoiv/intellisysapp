@@ -1,15 +1,13 @@
 <div class="container">
     <div mat-dialog-content>
       <form autocomplete="off" [formGroup]="employeeForm" (ngSubmit)="createEmployee()">
-      <hr />
+        <div [align]="'center'">
+          <h1><span><mat-icon>folder_shared</mat-icon>  Nueo Empleado</span></h1>
+      </div>
+        <hr />
       <h1>Datos Personales</h1>
       <div class="row">
-        <div class="col-md-3">
-         <mat-form-field appearance="outline">
-            <mat-label>Código:</mat-label>
-            <input matInput formControlName="code" />
-          </mat-form-field>
-        </div>
+       
         <div class="col-md-4">
          <mat-form-field appearance="outline">
             <mat-label>Primer Nombre:</mat-label>
@@ -40,7 +38,7 @@
           <mat-form-field class="example-full-width" class="form-group">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="hireDate">
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-hint>dd/mm/yyyy</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -128,8 +126,8 @@
           </mat-form-field>
         </div>
       </div>
-      <div mat-dialog-action [align]="'end'">
-        <button mat-raised-button color="primary" style="margin-left: 20px">Guardar</button>
+      <div  class="div" mat-dialog-action [align]="'left'">
+        <button class="buttonSave" >Guardar <mat-icon>cloud_done</mat-icon></button>
       </div>
     </form>
     </div>
