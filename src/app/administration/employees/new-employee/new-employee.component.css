@@ -13,16 +13,26 @@ form {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para resaltar el formulario */
 }
 
+.mat-grid-tile {
+  flex: 1; /* Puedes ajustar el valor según tus necesidades */
+ 
+}
 
+.texto-pequeno {
+  font-size: 6px;
+}
 
 mat-form-field{
   width: 100%;
-  padding-top: 10px;
+ 
+  padding: 10px;
+  
   
 }
 mat-form-field:hover {
   transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el campo */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Cambia la sombra al pasar el ratón sobre el campo */
+  
 }
 
 .buttonSave {
@@ -42,8 +52,6 @@ mat-form-field:hover {
 }
 
 mat-icon {
-
-  
   margin-left: 10px; /* Espacio a la derecha del ícono */
-
 }
+

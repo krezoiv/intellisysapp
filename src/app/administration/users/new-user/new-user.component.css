@@ -9,8 +9,21 @@
     background-color: white;
 }
 
+.custom-card {
+  width: 100%;
+  margin: 0 auto; /* Centra horizontalmente */
+  overflow-x: auto;
+}
 table {
   width: 100%;
+}
+.table-container {
+  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
+}
+.table-header {
+  background-color:dimgray; /* Color de fondo deseado */
+  color: white; /* Color del texto en el encabezado */
 }
 .pointer {
   cursor: pointer;
@@ -30,4 +43,15 @@ mat-form-field{
 
 .hidden-column {
   display: none;
+}
+
+tr.mat-row.selected-row {
+  background-color: #f0f0f0; /* Cambia el color de fondo de la fila seleccionada */
+  cursor: pointer; /* Cambia el cursor al pasar por encima de la fila */
+}
+
+/* Estilos para resaltar las filas al pasar el mouse por encima */
+tr.highlight:hover {
+  background-color: #f0f0f0; /* Cambia el color de fondo al pasar el mouse por encima */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse por encima */
 }

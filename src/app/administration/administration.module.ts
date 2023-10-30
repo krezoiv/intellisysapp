@@ -29,6 +29,8 @@ import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employe
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DlpAssignmentComponent } from './employees/dlp-assignment/dlp-assignment.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { DlpAssignmentComponent } from './employees/dlp-assignment/dlp-assignmen
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatCardModule,
+    MatGridListModule,
     ToastrModule.forRoot(), // Agrega ToastrModule a la lista de imports
   ]
 })

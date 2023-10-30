@@ -1,4 +1,48 @@
 
   mat-form-field {
     width: 100%;
+    padding-top: 15px; /* Ajusta el valor según tus necesidades */
   }
+
+  .section{
+    width: 100%;
+    padding-top: 25px; /* Ajusta el valor según tus necesidades */
+  }
+
+  .readonly-input {
+    pointer-events: none; /* Evita la interacción del usuario con el elemento */
+    
+  }
+
+  .button {
+    width: 100%; /* El botón ocupará todo el ancho del contenedor */
+    height: 50px;
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: 10px; /* Espacio superior de 10px */
+    color: white;
+    background-color: darkgreen;
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
+    border-radius: 5px; /* Agrega bordes redondeados */
+  }
+  
+  .button:hover {
+    background-color: forestgreen; /* Cambia el color de fondo al pasar el ratón por encima */
+  }
+  
+  .buttonCancel {
+    width: 100%; /* El botón ocupará todo el ancho del contenedor */
+    height: 50px;
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: 10px; /* Espacio superior de 10px */
+    color: white;
+    background-color: red;
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón por encima */
+    border-radius: 5px; /* Agrega bordes redondeados */
+  }
+  
+  .buttonCancel:hover {
+    background-color: orangered; /* Cambia el color de fondo al pasar el ratón por encima */
+  }
+  

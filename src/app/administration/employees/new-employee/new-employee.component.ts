@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
+import { format } from 'date-fns'
+
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import { formatDate } from '@angular/common';
 import { CampusModel } from 'src/app/data/models/campus.models';
 import { DepartmetsModel } from 'src/app/data/models/department.model';
 import { EmployeeTypeModel } from 'src/app/data/models/employee-type';
@@ -12,6 +23,10 @@ import { WorkPositionService } from 'src/app/services/work-position.service';
 import { ToastrService } from 'ngx-toastr'; // Importa ToastrService
 import Swal from 'sweetalert2';
 import { EmployeeFormInterface } from 'src/app/data/interfaces/employee-form.interfaces';
+import { Router } from '@angular/router';
+
+const onlyChar = /^[a-zA-ZñÑ]+( [a-zA-ZñÑ]+)*$/;
+const onlyNumber = /^[0-9]+$/;
 
 @Component({
   selector: 'app-new-employee',
@@ -19,6 +34,16 @@ import { EmployeeFormInterface } from 'src/app/data/interfaces/employee-form.int
   styleUrls: ['./new-employee.component.css'],
 })
 export class NewEmployeeComponent {
+  public currentDate: Date = new Date();
+  public maxDate = format(this.currentDate, 'yyyy-MM-dd HH:mm:ss');;
+
+  public fieldsErrorMessages = {
+    patternRequired: '*El campo es obligatorio y debe contener solo caracteres alfabéticos sin tíldes',
+    required: '*Campo requerido',
+    onlyNumber: '*Campo solo debe contener núnmeros sin espacios',
+    dpi: '*campo es obligatorio, debe de ser numérico de 13 digitos',
+    patternNotRequired : '*El campo debe contener solo caracteres alfabéticos sin tíldes',
+  };
   public formSubmitted = false;
   /**
    * Propiedad campus
@@ -61,11 +86,11 @@ export class NewEmployeeComponent {
   public municipality: MunicipalityModel[] = [];
 
   public employeeForm: FormGroup = this.fb.group({
-    code: ['', Validators.required],
-    firstName: ['', Validators.required],
-    secondName: ['', Validators.required],
-    firstLastName: ['', Validators.required],
-    secondLastName: ['', Validators.required],
+    code: [''],
+    firstName: ['', [Validators.required, Validators.pattern(onlyChar)]],
+    secondName: ['', [Validators.pattern(onlyChar)]],
+    firstLastName: ['', [Validators.required, Validators.pattern(onlyChar)]],
+    secondLastName: ['', [Validators.pattern(onlyChar)]],
     hireDate: ['', Validators.required],
     idCampus: ['', Validators.required],
     idEmployeeType: ['', Validators.required],
@@ -74,11 +99,15 @@ export class NewEmployeeComponent {
     idDepartment: ['', Validators.required],
     idMunicipality: ['', Validators.required],
     addressReference: ['', Validators.required],
-    BACaccount: ['', Validators.required],
-    BAMaccount: ['', Validators.required],
+    BACaccount: ['', [Validators.pattern(onlyNumber)]],
+    BAMaccount: ['', [Validators.pattern(onlyNumber)]],
+    dpi: ['', [Validators.required, Validators.pattern(onlyNumber), Validators.maxLength(13),Validators.minLength(13),
+      ],
+    ],
   });
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private _locationService: LocationService,
@@ -90,6 +119,13 @@ export class NewEmployeeComponent {
     this.loadCampus();
     this.loadDepartments();
     this.loadEmployeeType();
+  }
+
+  isValidField(field: string) {
+    return (
+      this.employeeForm.controls[field].errors &&
+      this.employeeForm.controls[field].touched
+    );
   }
 
   // Carga la lista de campus desde el servicio.
@@ -171,71 +207,78 @@ export class NewEmployeeComponent {
   onDepartmentSelected(event: any) {
     const selectedDepartmentID = event.value; // Utiliza event.value para obtener el valor seleccionado
     console.log('Selected Department ID:', selectedDepartmentID);
-  
+
     if (selectedDepartmentID !== undefined && selectedDepartmentID !== null) {
       // Llama a la función para cargar los municipios por departamento.
       this.loadMunicipalitiesByDepartment(selectedDepartmentID);
     }
   }
-  
 
-  /*createEmployee(){
-    if (this.employeeForm.valid){
-      this._employeeService.createEmployee(this.employeeForm.value).subscribe(
-        (data : any) =>{
-          if (data.message) {
-            // Comprobar si la respuesta contiene un mensaje de éxito
-            const successMessage = data.message;
-            
-            // Muestra el mensaje de éxito utilizando Toastr
-            this.toastr.success(successMessage, 'Éxito');
-            this.employeeForm.reset();
-            
-            // Puedes realizar cualquier otra acción después de un éxito aquí
-          } else {
-            // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
-            this.toastr.error('Error inesperado, intente de nuevo', 'Error');
-          }
-        },
-        (err) => {
-          this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
-        }
-      )
-    }
-  }*/
+  createEmployee() {
+    if (this.employeeForm.valid) {
+      const firstName = this.employeeForm!.get('firstName')!.value;
+      const firstLastName = this.employeeForm!.get('firstLastName')!.value;
+     
+      // Verificar si los campos BACaccount y BAMaccount están vacíos y asignar valor 0 si es necesario
+      if (this.employeeForm.value.BACaccount === '') {
+        this.employeeForm.patchValue({ BACaccount: 0 });
+      }
+      if (this.employeeForm.value.BAMaccount === '') {
+        this.employeeForm.patchValue({ BAMaccount: 0 });
+      }
 
-
-  createEmployee(){
-    if(this.employeeForm.valid){
       Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Deseas guardar el empleado',
+        title: `¿Estás seguro de guardar a <strong>${firstName}</strong> <strong>${firstLastName}</strong>?`,
+        text: '!! Confirmar !!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí',
         cancelButtonText: 'No',
-      }).then((result)=> {
-        if(result.isConfirmed){
-          this._employeeService.createEmployee(this.employeeForm.value).subscribe(
-            (data : any) =>{
-              if (data.message) {
-                // Comprobar si la respuesta contiene un mensaje de éxito
-                const successMessage = data.message;
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this._employeeService
+            .createEmployee(this.employeeForm.value)
+            .subscribe(
+              (data: any) => {
+                if (data.message) {
+                  // Comprobar si la respuesta contiene un mensaje de éxito
+                 
+                  if (
+                    !this.employeeForm.value.BAMaccount ||
+                    !this.employeeForm.value.BACaccount
+                  ) {
+                    Swal.fire({
+                      title: 'No se ha ingresado número de cuenta bancaria',
+                      text: 'Por favor, gestionar aperturas de cuentas.',
+                      icon: 'warning',
+                    });
+                  }
+
+                  const successMessage = data.message;
+                  // Muestra el mensaje de éxito utilizando Toastr
+                  this.toastr.success(successMessage, 'Éxito');
+                  this.employeeForm.reset();
+                 
+                  // Puedes realizar cualquier otra acción después de un éxito aquí
+                } else {
+                  // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
+                  this.toastr.error(
+                    'Error inesperado, intente de nuevo',
+                    'Error'
+                  );
+                }
+               
+              
+              },
+              (err) => {
+                this.toastr.error(
+                  err.error.error || 'Error inesperado, intente de nuevo',
+                  'Error'
+                );
                 
-                // Muestra el mensaje de éxito utilizando Toastr
-                this.toastr.success(successMessage, 'Éxito');
-                this.employeeForm.reset();
-                
-                // Puedes realizar cualquier otra acción después de un éxito aquí
-              } else {
-                // Si la respuesta no contiene un mensaje de éxito, muestra un mensaje genérico
-                this.toastr.error('Error inesperado, intente de nuevo', 'Error');
               }
-            },
-            (err) => {
-              this.toastr.error(err.error.error || 'Error inesperado, intente de nuevo', 'Error');
-            }
-          )
+             
+            );
         }
       });
     } else {
@@ -243,7 +286,11 @@ export class NewEmployeeComponent {
         title: 'Error',
         text: 'Por favor, complete todos los campos requeridos antes de guardar.',
         icon: 'warning',
-      })
+      });
     }
+  }
+
+  reloadPage() {
+    location.reload();
   }
 }

@@ -20,8 +20,9 @@ export class EmployeesModel {
       public idWorkposition : WorkPositionModel,
       public idMunicipality : MunicipalityModel,
       public addressReference : string,
-      public BACaccount : string,
-      public BAMaccount : string,
+      public BACaccount : number,
+      public BAMaccount : number,
+      public dpi : number
     ){}
 };
 
